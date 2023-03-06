@@ -1,5 +1,5 @@
 import { useState } from 'react';
-
+import { Router } from './routes';
 
 
 
@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      <button className='buttonRed'>Cancelar</button>
+     <Router/>
     </>
   )
 }
