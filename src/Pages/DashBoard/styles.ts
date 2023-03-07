@@ -84,7 +84,7 @@ export const MenuNavigation = styled.div`
 export const RenderPage = styled.div`
 
     width: 90%;
-    height: 200px;
-    border: 1px solid blue;
+    height: 100vh;
     padding: 16px;
+    background-color: var(--color-grey100);
 `;

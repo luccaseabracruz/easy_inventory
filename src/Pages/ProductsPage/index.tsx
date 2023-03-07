@@ -1,3 +1,5 @@
+import { InputSearch } from "../../components/InputSearch"
+import { ProductsList } from "../../components/ProductsList"
 import { StyledProductsPageContainer } from "./style"
 
 export const ProductsPage = () => {
@@ -6,9 +8,11 @@ export const ProductsPage = () => {
         <StyledProductsPageContainer>
             <h1>Produtos</h1>
 
-            <form>
-                <input type="text" />
-            </form>
+            <InputSearch placeholder="Digite o nome do produto"/>
+
+            <ProductsList />
+
+            
         </StyledProductsPageContainer>
 
     )
