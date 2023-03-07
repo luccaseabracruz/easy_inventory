@@ -1,6 +1,8 @@
-import { MenuNavigation, DivPai, RenderPage } from "./style";
-import Retrato from "../../assets/retrato.svg";
-import { Outlet, Link, useNavigate } from "react-router-dom";
+
+import { MenuNavigation, DivPai, RenderPage } from './styles';
+import Retrato from '../../assets/retrato.svg';
+import {Outlet,Link,useNavigate} from 'react-router-dom';
+
 
 export const DashBoard = () => {
   const navigate = useNavigate();
