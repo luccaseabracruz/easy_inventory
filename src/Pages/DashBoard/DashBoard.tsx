@@ -1,4 +1,4 @@
-import { MenuNavigation, DivPai, RenderPage } from './style';
+import { MenuNavigation, DivPai, RenderPage } from './styles';
 import Retrato from '../../assets/retrato.svg';
 import {Outlet,Link,useNavigate} from 'react-router-dom';
 
