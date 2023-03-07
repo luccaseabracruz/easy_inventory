@@ -1,22 +1,27 @@
 import { Inputs } from '../../components/Inputs/Inputs';
 import { Form } from './styles';
 import {useForm} from 'react-hook-form';
+import {iFormValuesMyProfile} from '../../provides/@types'
+import { useContext } from 'react';
+import {UserContext} from '../../provides/UserContext'
 
-import { iUsers } from '../../components/Inputs/Inputs';
 
 export const MyProfile = () => {
 
-    const {register,handleSubmit} = useForm({});
+    const {getDatasForm,user} = useContext(UserContext);
+    const {register,handleSubmit} = useForm<iFormValuesMyProfile>({});
+
+    
 
     return (
         <>
         <h1>Olá nome do Admin</h1>
-        <Form>
-            <Inputs name='nome do admin'/>
-            <Inputs name='test1@mail.com'/>
-            <Inputs name='Senha'/>
-            <Inputs name='Confirmar senha'/>
-            <Inputs name='Avatar'/>
+        <Form onSubmit={handleSubmit(getDatasForm)}>
+            <Inputs type='text' nameInput='name' register={register} />
+            <Inputs type='email' nameInput='email' register={register}/>
+            <Inputs type='password' nameInput='password' value='' register={register}/>
+            <Inputs type='password' nameInput='ConfirmPassword' value='' register={register}/>
+            <Inputs type='text' nameInput='avatar' register={register}/>
             <button className='buttonGreen'>Salvar Alterações</button>
         </Form>
         </>

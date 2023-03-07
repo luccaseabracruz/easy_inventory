@@ -8,6 +8,8 @@ import {
   IRegisterFormValues,
   IUser,
   IUserContext,
+  IResponseFormLogin,
+  iFormValuesMyProfile
 } from "./@types";
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
@@ -55,9 +57,13 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
     }
   };
 
+  const getDatasForm = (datas:iFormValuesMyProfile)=>{
+    console.log(datas);
+};
+
   return (
     <UserContext.Provider
-      value={{ loading, setLoading, user, userRegister, userLogin, userlogout }}
+      value={{ loading, setLoading, user, userRegister, userLogin, userlogout,getDatasForm }}
     >
       {children}
     </UserContext.Provider>
