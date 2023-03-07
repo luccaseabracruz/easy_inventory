@@ -1,16 +1,28 @@
-import { useState } from 'react';
-import { Router } from './routes';
-
-
+import { useState } from "react";
+import { ToastContainer } from "react-toastify";
+import { UserProvider } from "./provides/UserContext";
+import { Router } from "./routes";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
-    <>
-     <Router/>
-    </>
-  )
+    <UserProvider>
+      <Router />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <ToastContainer />
+    </UserProvider>
+  );
 }
 
-export default App
+export default App;
