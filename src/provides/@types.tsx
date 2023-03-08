@@ -1,3 +1,6 @@
+import { ReactNode } from "react";
+
+//UserContext
 export interface IDefaultProviderProps {
   children: React.ReactNode;
 }
@@ -25,4 +28,21 @@ export interface IUserContext {
   userRegister: (formData: IRegisterFormValues) => Promise<void>;
   userLogin: (formData: ILoginValues) => Promise<void>;
   userlogout: () => void;
+}
+
+
+
+//ProductsContext
+
+export interface IProductsContext{
+  products: IProduct[];
+}
+
+export interface IProduct{
+  name: string;
+  image: string;
+  price: string;
+  category: string;
+  qtd: string;
+  id: number;
 }

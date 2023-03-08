@@ -1,8 +1,12 @@
 import { StyledProductsListContainer } from "./style"
 import {AiOutlineArrowLeft, AiOutlineArrowRight} from 'react-icons/ai'
 import { ProductCard } from "../ProductCard"
+import { useContext } from "react"
+import { ProductsContext } from "../../provides/ProductsContext"
 
 export const ProductsList = () => {
+
+    const {} = useContext(ProductsContext)
 
     return (
         <StyledProductsListContainer>
@@ -16,7 +20,9 @@ export const ProductsList = () => {
                 {false ? (
                     <h2>Nenhum produto foi cadastrado</h2>
                 ) : (
-                    <ProductCard />
+                    <>
+                        {}
+                    </>
                 )}
 
             </ul>
