@@ -1,30 +1,23 @@
-import { useForm } from 'react-hook-form';
+import { ReactNode } from 'react';
+import { useForm,Path,UseFormRegister } from 'react-hook-form';
 import { Input } from './styles';
+import {iFormValuesMyProfile,IUser} from '../../provides/TypesUser';
 
-interface iDatasUser{
-    email?:string;
-    name?:string;
-    id?:number;
-}
 
-export interface iUsers{
-    accessToken:string;
-    user:iDatasUser
+interface iNameInputs{
+    nameInput:Path<iFormValuesMyProfile>;
+    type:string;
+    register:UseFormRegister<iFormValuesMyProfile>;
+    error?:ReactNode;
+    value?:string;
 }
 
 export type TypeInputs = 'text' | 'email' | 'password';
 
-
-
-
-export const Inputs = ({email,id,name}:iDatasUser)=>{
-
-    
-    const {register,handleSubmit} = useForm({});
-
+export const Inputs = ({nameInput,type,register,error,value}:iNameInputs)=>{
 
 
     return(
-        <Input  defaultValue={name} />
+        <Input type={type} defaultValue={nameInput} value={value} {...register(nameInput)} />
     )
 }

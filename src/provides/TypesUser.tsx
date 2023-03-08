@@ -5,6 +5,20 @@ export interface IDefaultProviderProps {
 export interface IUser {
   name: string;
   email: string;
+  id?:number;
+  avatar?:string;
+}
+
+export interface IResponseFormLogin{
+  accessToken:string;
+  user:IUser
+}
+
+export interface iFormValuesMyProfile{
+  name:string;
+  email:string;
+  id:number;
+  avatar?:string;
 }
 
 export interface IRegisterFormValues {
@@ -25,4 +39,6 @@ export interface IUserContext {
   userRegister: (formData: IRegisterFormValues) => Promise<void>;
   userLogin: (formData: ILoginValues) => Promise<void>;
   userlogout: () => void;
+  getDatasFormPageMyProfile:(datas:iFormValuesMyProfile)=>void;
 }
+
