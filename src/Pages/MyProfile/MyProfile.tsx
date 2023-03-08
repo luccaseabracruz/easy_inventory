@@ -1,29 +1,39 @@
 import { Inputs } from '../../components/Inputs/Inputs';
 import { Form } from './styles';
 import {useForm} from 'react-hook-form';
-import {iFormValuesMyProfile} from '../../provides/@types'
-import { useContext } from 'react';
+import {iFormValuesMyProfile, IUser} from '../../provides/TypesUser'
+import { useContext, useEffect } from 'react';
 import {UserContext} from '../../provides/UserContext'
+import { api } from '../../services/api';
 
 
 export const MyProfile = () => {
 
-    const {getDatasForm,user} = useContext(UserContext);
+    const {getDatasFormPageMyProfile,user} = useContext(UserContext);
     const {register,handleSubmit} = useForm<iFormValuesMyProfile>({});
 
     
+    useEffect(()=>{
+        const getDatasUser = async ()=>{
+            const id :IUser = user as IUser;
+            try{
+                const token = localStorage.getItem('@TOKEN') as string;
+                const response = await api.get(`/users/${id}`,{headers:{
+                    Authorization: `Bearer ${JSON.parse(token)}`
+                }})
+                console.log(response);
+            }catch (error){
+                console.log(error)
+            }
+        }
+        getDatasUser();
+    },[user]);
+
 
     return (
         <>
-        <h1>Olá nome do Admin</h1>
-        <Form onSubmit={handleSubmit(getDatasForm)}>
-            <Inputs type='text' nameInput='name' register={register} />
-            <Inputs type='email' nameInput='email' register={register}/>
-            <Inputs type='password' nameInput='password' value='' register={register}/>
-            <Inputs type='password' nameInput='ConfirmPassword' value='' register={register}/>
-            <Inputs type='text' nameInput='avatar' register={register}/>
-            <button className='buttonGreen'>Salvar Alterações</button>
-        </Form>
+        <h1>Olá </h1>
+   
         </>
     )
 }

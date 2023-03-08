@@ -10,7 +10,7 @@ import {
   IUserContext,
   IResponseFormLogin,
   iFormValuesMyProfile
-} from "./@types";
+} from "./TypesUser";
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
@@ -18,6 +18,8 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
   const navigate = useNavigate();
   const [user, setUser] = useState<IUser | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
+
+  
 
   const userRegister = async (formData: IRegisterFormValues) => {
     try {
@@ -36,7 +38,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
     try {
       setLoading(true);
       const response = await api.post("/login", formData);
-      setUser(response.data.user);
+      setUser(response.data);
       localStorage.setItem("@TOKEN", response.data.accessToken);
       toast("login realizado com sucesso");
       navigate("/DashBoard");
@@ -57,13 +59,13 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
     }
   };
 
-  const getDatasForm = (datas:iFormValuesMyProfile)=>{
+  const getDatasFormPageMyProfile = (datas:iFormValuesMyProfile)=>{
     console.log(datas);
 };
 
   return (
     <UserContext.Provider
-      value={{ loading, setLoading, user, userRegister, userLogin, userlogout,getDatasForm }}
+      value={{ loading, setLoading, user, userRegister, userLogin, userlogout,getDatasFormPageMyProfile }}
     >
       {children}
     </UserContext.Provider>

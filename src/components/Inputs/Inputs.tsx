@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { useForm,Path,UseFormRegister } from 'react-hook-form';
 import { Input } from './styles';
-import {iFormValuesMyProfile} from '../../provides/@types';
+import {iFormValuesMyProfile,IUser} from '../../provides/TypesUser';
 
 
 interface iNameInputs{

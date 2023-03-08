@@ -6,6 +6,7 @@ export interface IUser {
   name: string;
   email: string;
   id?:number;
+  avatar?:string;
 }
 
 export interface IResponseFormLogin{
@@ -16,9 +17,7 @@ export interface IResponseFormLogin{
 export interface iFormValuesMyProfile{
   name:string;
   email:string;
-  password:string;
   id:number;
-  ConfirmPassword:string;
   avatar?:string;
 }
 
@@ -40,5 +39,6 @@ export interface IUserContext {
   userRegister: (formData: IRegisterFormValues) => Promise<void>;
   userLogin: (formData: ILoginValues) => Promise<void>;
   userlogout: () => void;
-  getDatasForm:(datas:iFormValuesMyProfile)=>void;
+  getDatasFormPageMyProfile:(datas:iFormValuesMyProfile)=>void;
 }
+
