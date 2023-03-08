@@ -15,4 +15,12 @@ export interface IProduct{
 
 export interface IProductsContext{
     products: IProduct[];
+    filteredProducts: IProduct[];
+    searchProduct: (data: ISerchData) => void;
+    search: string;
+    cleanSearch: () => void;
+}
+
+export interface ISerchData{
+    inputValue: string;
 }

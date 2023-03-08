@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { IDefaultProviderProps, IProduct, IProductsContext } from "./TypesProduct";
+import { IDefaultProviderProps, IProduct, IProductsContext, ISerchData } from "./TypesProduct";
 import { api } from "../services/api";
 
 export const ProductsContext = createContext<IProductsContext>({} as IProductsContext);
@@ -7,6 +7,8 @@ export const ProductsContext = createContext<IProductsContext>({} as IProductsCo
 export const ProductsProvider = ({children}: IDefaultProviderProps) => {
 
     const [products, setProducts] = useState([] as IProduct[]);
+    const [filteredProducts, setFilteredProducts] = useState([] as IProduct[]);
+    const [search, setSearch] = useState('');
 
     const getAllProducts = async () => {
         try {
@@ -17,15 +19,28 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
                     Authorization: `Bearer ${token}`,
                 }
             });
-
-            console.log(response.data)
             
-            // setProducts(response.data)
+            setProducts(response.data)
             
         } catch (error) {
             console.log(error)
         }
     }
+
+    const searchProduct = (data: ISerchData) => {
+        const currentSearch = data.inputValue;
+        setFilteredProducts(products.filter((product) => 
+            product.name.toLowerCase().includes(currentSearch.toLowerCase())
+        ));
+
+        setSearch(currentSearch)
+    };
+
+    const cleanSearch = () => {
+        setFilteredProducts([]);
+        setSearch('');
+    }
+
 
 
     //useEffect para buscar produtos
@@ -34,7 +49,7 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
     }, [])
 
     return (
-        <ProductsContext.Provider value={{products}}>
+        <ProductsContext.Provider value={{products, filteredProducts, searchProduct, search, cleanSearch}}>
             {children}
         </ProductsContext.Provider>
     )
