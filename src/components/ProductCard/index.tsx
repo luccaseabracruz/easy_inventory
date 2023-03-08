@@ -1,19 +1,24 @@
-import { StyledProductCard } from "./style"
-import cellphone from '../../assets/product-cellphone.svg'
-import {AiOutlinePlus, AiOutlineMinus} from 'react-icons/ai'
-import {FaTrash} from 'react-icons/fa'
+import { StyledProductCard } from "./style";
+import cellphone from '../../assets/product-cellphone.svg';
+import {AiOutlinePlus, AiOutlineMinus} from 'react-icons/ai';
+import {FaTrash} from 'react-icons/fa';
+import { IProduct } from "../../provides/@types";
 
-export const ProductCard = () => {
+interface IProductCardProps{
+    product: IProduct;
+}
+
+export const ProductCard = ({product}: IProductCardProps) => {
 
     return (
         <StyledProductCard>
             <div className="content">
 
-                <img src={cellphone} alt="Foto de um celular" />
+                <img src={product.image} alt={`Foto de ${product.name}`}/>
 
                 <div className="info">
-                    <p>Nome do produto</p>
-                    <small>Categoria</small>
+                    <p>{product.name}</p>
+                    <small>{product.category}</small>
                     <button> <FaTrash /> Excluir</button>
                 </div>
 
@@ -22,11 +27,11 @@ export const ProductCard = () => {
             <div className="buttonsAndPrice">
                 <div className="quatityButtons">
                     <button> <AiOutlineMinus /> </button>
-                    <small>1</small>
+                    <small>{product.qtd}</small>
                     <button> <AiOutlinePlus /> </button>
                 </div>
 
-                <p>R$2100,00</p>
+                <p>{`R$${product.price.split('.').join(',')}`}</p>
             </div>
 
 

@@ -10,6 +10,8 @@ export const StyledProductCard = styled.li`
     border: 2px solid yellow;
     box-sizing: border-box;
 
+    background-color: #ffffff;
+
     img{
         height: 4rem;
     }
