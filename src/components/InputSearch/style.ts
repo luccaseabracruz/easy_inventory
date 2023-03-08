@@ -1,16 +1,21 @@
 import styled from "styled-components";
 
 export const StyledInputSearch = styled.form`
-    display: flex;
-    justify-content: space-between;
-    padding: .5rem;
-    background-color: #ffffff;
-    border-radius: .3rem;
+
     margin-bottom: 1rem;
+    .inputContainer{
+        display: flex;
+        justify-content: space-between;
+        padding: .5rem;
+        background-color: #ffffff;
+        border-radius: .3rem;
+
+    }
 
     input{
-        border: 2px solid red;
         width: 85%;
+        border: none;
+        outline: none;
     }
 
     button{
@@ -21,6 +26,13 @@ export const StyledInputSearch = styled.form`
     button:hover{
         background-color: grey; 
     }
+
+    small{
+        color: red;
+        margin: .1rem 0 0 .5rem;
+    }
+
+
 
 
 `
