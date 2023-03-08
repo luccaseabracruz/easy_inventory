@@ -12,12 +12,12 @@ export const Loginpage = () => {
   return (
     <StyledSection>
       <div>
-        <img src={img} alt="" srcset="" />
+        <img src={img} alt="" />
       </div>
-      <StykedForm>
+      
         <p>Login</p>
         <FormLogin />
-      </StykedForm>
+      
     </StyledSection>
   );
 };

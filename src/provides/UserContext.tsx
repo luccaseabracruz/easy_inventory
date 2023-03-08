@@ -38,7 +38,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
     try {
       setLoading(true);
       const response = await api.post("/login", formData);
-      setUser(response.data);
+      setUser(response.data.user);
       localStorage.setItem("@TOKEN", response.data.accessToken);
       toast("login realizado com sucesso");
       navigate("/DashBoard");
