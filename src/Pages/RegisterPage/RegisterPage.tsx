@@ -1,16 +1,14 @@
 import React from "react";
+import { FormRegister } from "../../components/Form/FormRegister";
+import { InputForm } from "../../components/InputForm/InputForm";
 import { Inputs } from "../../components/Inputs/Inputs";
-import { FormRegister } from "./style";
+import Header from "../../Header/Header";
 
 export const RegisterPage = () => {
   return (
-    <FormRegister>
-      <p>Register</p>
-      <Inputs />
-      <Inputs />
-      <Inputs />
-      <Inputs />
-      <button>Cadastrar</button>
-    </FormRegister>
+    <>
+      <Header />
+      <FormRegister />
+    </>
   );
 };
