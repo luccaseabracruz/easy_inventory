@@ -10,6 +10,7 @@ interface iNameInputs{
     register:UseFormRegister<iFormValuesMyProfile>;
     error?:ReactNode;
     value?:string;
+    
 }
 
 export type TypeInputs = 'text' | 'email' | 'password';

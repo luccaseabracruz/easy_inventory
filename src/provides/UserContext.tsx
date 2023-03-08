@@ -19,6 +19,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
   const [user, setUser] = useState<IUser | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
 
+
   
 
   const userRegister = async (formData: IRegisterFormValues) => {
@@ -62,6 +63,9 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
   const getDatasFormPageMyProfile = (datas:iFormValuesMyProfile)=>{
     console.log(datas);
 };
+   const getDatasUser = (datas:{})=>{
+
+  }
 
   return (
     <UserContext.Provider
