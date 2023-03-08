@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { ILoginValues } from "../../provides/@types";
+import { StykedForm } from "../../Pages/LoginPage/style";
+import { ILoginValues } from "../../provides/TypesUser";
 import { UserContext } from "../../provides/UserContext";
 import { InputForm } from "../InputForm/InputForm";
 
@@ -18,7 +19,7 @@ export const FormLogin = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(submit)}>
+    <StykedForm onSubmit={handleSubmit(submit)}>
       <InputForm
         label="email"
         placeholder="Digite seu Email"
@@ -34,6 +35,6 @@ export const FormLogin = () => {
         error={errors.password}
       />
       <button>Entrar</button>
-    </form>
+    </StykedForm>
   );
 };
