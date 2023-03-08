@@ -14,7 +14,12 @@ export interface iUsers{
 
 export type TypeInputs = 'text' | 'email' | 'password';
 
+
+
+
 export const Inputs = ({email,id,name}:iDatasUser)=>{
+
+    
     const {register,handleSubmit} = useForm({});
 
 
