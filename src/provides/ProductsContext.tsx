@@ -1,23 +1,30 @@
 import { createContext, useEffect, useState } from "react";
-import { IDefaultProviderProps, IProduct, IProductsContext } from "./@types";
+import { IDefaultProviderProps, IProduct, IProductsContext } from "./TypesProduct";
 import { api } from "../services/api";
 
-export const ProductsContext = createContext<IProductsContext | null>(null);
+export const ProductsContext = createContext<IProductsContext>({} as IProductsContext);
 
 export const ProductsProvider = ({children}: IDefaultProviderProps) => {
 
     const [products, setProducts] = useState([] as IProduct[]);
 
     const getAllProducts = async () => {
-        const token = localStorage.getItem('@TOKEN');
+        try {
+            const token = localStorage.getItem('@TOKEN');
+    
+            const response = await api.get('products', {
+                headers:{
+                    Authorization: `Bearer ${token}`,
+                }
+            });
 
-        const response = await api.get('/products', {
-            headers:{
-                Authorization: `Bearer ${token}`
-            }
-        });
-
-        setProducts(response.data)
+            console.log(response.data)
+            
+            // setProducts(response.data)
+            
+        } catch (error) {
+            console.log(error)
+        }
     }
 
 

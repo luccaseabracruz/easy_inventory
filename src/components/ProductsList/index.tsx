@@ -3,10 +3,12 @@ import {AiOutlineArrowLeft, AiOutlineArrowRight} from 'react-icons/ai'
 import { ProductCard } from "../ProductCard"
 import { useContext } from "react"
 import { ProductsContext } from "../../provides/ProductsContext"
+import { UserContext } from "../../provides/UserContext"
 
 export const ProductsList = () => {
 
-    const {} = useContext(ProductsContext)
+    const {products} = useContext(ProductsContext);
+
 
     return (
         <StyledProductsListContainer>
@@ -17,11 +19,11 @@ export const ProductsList = () => {
             </div>
 
             <ul className="productList">
-                {false ? (
+                {products.length === 0 ? (
                     <h2>Nenhum produto foi cadastrado</h2>
                 ) : (
                     <>
-                        {}
+                        {products.map((product) => <ProductCard product={product}/>)}
                     </>
                 )}
 
