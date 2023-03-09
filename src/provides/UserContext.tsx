@@ -19,7 +19,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
   const navigate = useNavigate();
   const [user, setUser] = useState<IUser | null>({} as IUser);
   const [loading, setLoading] = useState<boolean>(false);
-
+  const [checkUser,setCheckUser] = useState<IResponseFormLogin | boolean>(false);
 
 
 
@@ -45,6 +45,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       localStorage.setItem('@user', response.data.user.id);
       toast("login realizado com sucesso");
       navigate("/DashBoard");
+      setCheckUser(response.data);
     } catch (error) {
       console.log(error);
     } finally {
@@ -118,7 +119,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
 
   return (
     <UserContext.Provider
-      value={{ loading, setLoading, user, userRegister, userLogin, userlogout, getDatasFormPageMyProfile, setUser,updatePasswordUser }}
+      value={{ loading, setLoading, user, userRegister, userLogin, userlogout, getDatasFormPageMyProfile, setUser,updatePasswordUser,checkUser,setCheckUser }}
     >
       {children}
     </UserContext.Provider>
