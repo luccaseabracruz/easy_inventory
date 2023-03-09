@@ -1,11 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { InputSearch } from "../../components/InputSearch"
+import { ModalEditProduct } from "../../components/ModalEditProduct"
+import { ModalRemoveProduct } from "../../components/ModalRemoveProduct"
 import { ProductsList } from "../../components/ProductsList"
+import { ProductsContext } from "../../provides/ProductsContext"
 import { StyledProductsPageContainer } from "./style"
 import {api} from '../../services/api';
 import {useNavigate} from 'react-router-dom';
 
 export const ProductsPage = () => {
+    const {openEditProductModal, openRemoveProductModal} = useContext(ProductsContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -38,6 +42,9 @@ export const ProductsPage = () => {
             <InputSearch placeholder="Digite o nome do produto"/>
 
             <ProductsList />
+
+            {openEditProductModal ? <ModalEditProduct /> : null}
+            {openRemoveProductModal ? <ModalRemoveProduct /> : null}
 
             
         </StyledProductsPageContainer>

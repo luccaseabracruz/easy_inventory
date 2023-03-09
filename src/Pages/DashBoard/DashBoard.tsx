@@ -37,23 +37,18 @@ export const DashBoard = () => {
   }, [])
 
   return (
-    
-      
-        <DivPai>
-          <MenuNavigation>
-            <div className="image">
-              <img src={Retrato} />
-              <h1>Nome do Admin</h1>
-            </div>
-            <ul>
-              <li onClick={() => navigate("/dashboard/myprofile")}> Meu Perfil</li>
-              <li onClick={() => navigate("/dashboard/products")}>Produtos</li>
-              <li onClick={() => navigate("/dashboard/products")}>Criar Produto</li>
-              <li onClick={() => navigate("/dashboard/category")}>
-                Buscar Categorias
-              </li>
-            </ul>
-          </MenuNavigation>
+    <DivPai>
+      <MenuNavigation>
+        <div className="image">
+          <img src={Retrato} />
+          <h1>Nome do Admin</h1>
+        </div>
+        <ul>
+          <li onClick={() => navigate("/dashboard/myprofile")}> Meu Perfil</li>
+          <li onClick={() => navigate("/dashboard/products")}>Produtos</li>
+          <li onClick={() => navigate("/dashboard/products")}>Estatísticas</li>
+        </ul>
+      </MenuNavigation>
 
           <RenderPage>
             <Outlet />
