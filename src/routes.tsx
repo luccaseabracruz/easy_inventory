@@ -5,6 +5,8 @@ import { MyProfile } from "./Pages/MyProfile/MyProfile";
 import { ProductsPage } from "./Pages/ProductsPage";
 import { RegisterPage } from "./Pages/RegisterPage/RegisterPage";
 import { ProductsContext, ProductsProvider } from "./provides/ProductsContext";
+import {UpdatePasswordPage} from './Pages/UpdatePasswordPage/UpdatePasswordPage';
+
 
 export const Router = () => {
   return (
@@ -14,7 +16,7 @@ export const Router = () => {
 
 
       <Route path="/dashboard" element={<ProductsProvider> <DashBoard /></ProductsProvider> }>
-        <Route path="/dashboard/myprofile" element={<ProductsProvider><MyProfile /></ProductsProvider>} />
+        <Route path="/dashboard/myprofile" element={<ProductsProvider><MyProfile/></ProductsProvider>} />
         <Route path="/dashboard/products" element={<ProductsProvider><ProductsPage /></ProductsProvider>} />
       </Route>
     </Routes>

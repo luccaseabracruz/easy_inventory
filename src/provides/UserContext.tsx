@@ -9,18 +9,19 @@ import {
   IUser,
   IUserContext,
   IResponseFormLogin,
-  iFormValuesMyProfile
+  iFormValuesMyProfile,
+  IUpdateFormPassword
 } from "./TypesUser";
 
 export const UserContext = createContext<IUserContext>({} as IUserContext);
 
 export const UserProvider = ({ children }: IDefaultProviderProps) => {
   const navigate = useNavigate();
-  const [user, setUser] = useState<IUser | null>(null);
+  const [user, setUser] = useState<IUser | null>({} as IUser);
   const [loading, setLoading] = useState<boolean>(false);
 
 
-  
+
 
   const userRegister = async (formData: IRegisterFormValues) => {
     try {
@@ -41,6 +42,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       const response = await api.post("/login", formData);
       setUser(response.data.user);
       localStorage.setItem("@TOKEN", response.data.accessToken);
+      localStorage.setItem('@user', response.data.user.id);
       toast("login realizado com sucesso");
       navigate("/DashBoard");
     } catch (error) {
@@ -60,16 +62,53 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
     }
   };
 
-  const getDatasFormPageMyProfile = (datas:iFormValuesMyProfile)=>{
-    console.log(datas);
-};
-   const getDatasUser = (datas:{})=>{
+  const getDatasFormPageMyProfile = async (datas: iFormValuesMyProfile) => {
+    const array: any[] = [];
 
-  }
+      if (datas.name.length !== 0) {
+        array.push('name',{name:datas.name});
+        console.log("nome")
+      }
+      if (datas.email.length !== 0) {
+        array.push('email',{email:datas.email});
+        console.log("email")
+      }
+      if (datas.avatar?.length !== 0) {
+        array.push('avatar',{avatar:datas.avatar});
+        console.log("avatar")
+      }
+
+      if(array.length == 0){
+        console.log('atualize algum campo')
+      }else{
+        const token = localStorage.getItem('@TOKEN');
+        const id = localStorage.getItem('@user');
+
+        const data = {
+         name:array[0] == 'name' ? array[1].name : user?.name as string,
+         email:array[2] == 'email' ? array[3].email : array[1].email || user?.email as string,
+         avatar:array[4] == 'avatar' ? array[5].avatar : array[2] == 'avatar' ? array[3].avatar : array[1].avatar || user?.avatar as string,
+        };
+        const response = await api.patch(`/users/${id}`,data,{headers:{
+          Authorization: `Bearer ${token}`
+        }})
+        console.log(response);
+        //feedback
+        document.location.reload();
+      }
+
+    };
+
+    const updatePasswordUser = (datas:IUpdateFormPassword) =>{
+      console.log(datas);
+    }
+    
+
+
 
   return (
     <UserContext.Provider
-      value={{ loading, setLoading, user, userRegister, userLogin, userlogout,getDatasFormPageMyProfile }}
+      value={{ loading, setLoading, user, userRegister, userLogin, userlogout, getDatasFormPageMyProfile, setUser,updatePasswordUser }}
     >
       {children}
     </UserContext.Provider>
