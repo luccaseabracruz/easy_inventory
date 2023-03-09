@@ -3,13 +3,14 @@ import styled from 'styled-components';
 
 export const DivPai = styled.div`
 
+    position: relative;
     max-width: 100%;
-    height: 100vh;
     display: flex;
     flex-direction: column;
     gap: 50px;
     justify-content: center;
     align-items: center;
+    background-color: var(--color-grey100);
 
     @media(min-width: 690px){
         display: flex;
@@ -38,7 +39,7 @@ export const MenuNavigation = styled.div`
         width: 150px;
         display: flex;
         flex-direction: column;
-        color: var(--color-grey0);
+        color: (--varcolor-grey0);
         font-size: 8px;
         align-items: center;
         justify-content: center;
@@ -66,14 +67,18 @@ export const MenuNavigation = styled.div`
 
     @media(min-width: 690px){
         max-width: 25%;
-        height: 100vh;
+        height: 830px;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
+        border: 1px solid var(--color-primary);
+        position: fixed;
+        left: 0px;
+        left: 0px;
     }
     @media(min-width: 1000px){
         max-width: 20%;
-        height: 100vh;
+        height: 135vh;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -82,9 +87,37 @@ export const MenuNavigation = styled.div`
 `;
 
 export const RenderPage = styled.div`
-
-    width: 90%;
-    height: 100vh;
-    padding: 16px;
+    width: 100%;
+    padding: 100px,16px,16px;
     background-color: var(--color-grey100);
+    position: static;
+    right: 0px;
+    top:0px;
+    margin-top: 100px;
+
+    @media(min-width:690px){
+        float: right;
+        margin-left: 173px;
+        margin-top: 0px;
+        width: 75%;
+        height: 800px;
+        padding: 16px;
+    }
+    @media(min-width: 760px){
+        width: 72%;
+        margin-left: 190px;
+    }
+    @media(min-width: 815px){
+        margin-left: 200px;
+        padding: 16px;
+    }
+    @media(min-width:870px){
+        margin-left: 210px;
+    }
+    @media(min-width: 1000px){
+        width: 70%;
+        height: 130vh;
+        margin-right: 0px;
+        padding: 16px;
+    }
 `;
