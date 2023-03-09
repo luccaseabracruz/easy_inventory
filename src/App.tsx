@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { ToastContainer } from "react-toastify";
 import { UserProvider } from "./provides/UserContext";
 import { Router } from "./routes";
