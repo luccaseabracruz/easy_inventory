@@ -17,10 +17,7 @@ export const DashBoard = () => {
         <ul>
           <li onClick={() => navigate("/dashboard/myprofile")}> Meu Perfil</li>
           <li onClick={() => navigate("/dashboard/products")}>Produtos</li>
-          <li onClick={() => navigate("/dashboard/products")}>Criar Produto</li>
-          <li onClick={() => navigate("/dashboard/category")}>
-            Buscar Categorias
-          </li>
+          <li onClick={() => navigate("/dashboard/products")}>Estatísticas</li>
         </ul>
       </MenuNavigation>
 

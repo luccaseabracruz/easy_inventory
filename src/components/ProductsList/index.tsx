@@ -17,11 +17,21 @@ export const ProductsList = () => {
             {/* {true && <SearchTitle />} */}
             {filteredProducts.length > 0 && <SearchTitle />}
 
-            <div className="pagination">
-                <button> <AiOutlineArrowLeft /> </button>
-                <p>Nº</p>
-                <button> <AiOutlineArrowRight /> </button>
-            </div>
+            {filteredProducts.length === 0 && products.length > 10 ? (
+                <div className="pagination">
+                    <button> <AiOutlineArrowLeft /> </button>
+                    <p>Nº</p>
+                    <button> <AiOutlineArrowRight /> </button>
+                </div>
+            ): null}
+
+            {filteredProducts.length > 10 ? (
+                <div className="pagination">
+                    <button> <AiOutlineArrowLeft /> </button>
+                    <p>Nº</p>
+                    <button> <AiOutlineArrowRight /> </button>
+                </div>
+            ): null}
 
             <ul className="productList">
                 {products.length === 0 ? (
