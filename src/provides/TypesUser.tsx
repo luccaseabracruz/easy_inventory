@@ -7,6 +7,7 @@ export interface IUser {
   email: string;
   id?:number;
   avatar?:string;
+  password?:string;
 }
 
 export interface IResponseFormLogin{
@@ -19,6 +20,13 @@ export interface iFormValuesMyProfile{
   email:string;
   id:number;
   avatar?:string;
+  password?:string;
+  confirmPassword?:string;
+}
+
+export interface IUpdateFormPassword{
+  password:string;
+  confirmPassword:string;
 }
 
 export interface IRegisterFormValues {
@@ -36,9 +44,11 @@ export interface IUserContext {
   loading: boolean;
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
   user: IUser | null;
+  setUser: React.Dispatch<React.SetStateAction<IUser | null>>
   userRegister: (formData: IRegisterFormValues) => Promise<void>;
   userLogin: (formData: ILoginValues) => Promise<void>;
   userlogout: () => void;
   getDatasFormPageMyProfile:(datas:iFormValuesMyProfile)=>void;
+  updatePasswordUser: (datas:IUpdateFormPassword)=>void;
 }
 

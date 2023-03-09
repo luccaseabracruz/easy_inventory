@@ -10,14 +10,16 @@ interface iNameInputs{
     register:UseFormRegister<iFormValuesMyProfile>;
     error?:ReactNode;
     value?:string;
+    name?:string | undefined;
+    placeholder?:string;
 }
 
 export type TypeInputs = 'text' | 'email' | 'password';
 
-export const Inputs = ({nameInput,type,register,error,value}:iNameInputs)=>{
+export const Inputs = ({nameInput,type,register,error,value,name,placeholder}:iNameInputs)=>{
 
 
     return(
-        <Input type={type} defaultValue={nameInput} value={value} {...register(nameInput)} />
+        <Input type={type}  defaultValue={name} placeholder={placeholder}  {...register(nameInput)} />
     )
 }
