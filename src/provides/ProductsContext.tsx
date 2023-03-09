@@ -41,15 +41,56 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
         setSearch('');
     }
 
+    const modifyQuantity = async (newQuantity: string, productId: number) => {
+        const token = localStorage.getItem('@TOKEN');
+        try {
+            const response = await api.patch(`products/${productId}`, {qtd: newQuantity}, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+            
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const addProduct = (product: IProduct) => {
+        const productIndex = products.findIndex((currentProduct) => currentProduct.id === product.id);
+        const newProduct: IProduct = {...product};
+        const quantity = String(Number(newProduct.qtd) + 1);
+        modifyQuantity(quantity, product.id);
+        newProduct.qtd = quantity;
+
+        const newArray = [...products];
+        newArray.splice(productIndex, 1, newProduct);
+        
+        setProducts(newArray);
+        
+    }
+    const subtractProduct = (product: IProduct) => {
+        const productIndex = products.findIndex((currentProduct) => currentProduct.id === product.id);
+        const newProduct: IProduct = {...product};
+        const quantity = String(Number(newProduct.qtd) - 1);
+        modifyQuantity(quantity, product.id);
+        newProduct.qtd = quantity;
+
+        const newArray = [...products];
+        newArray.splice(productIndex, 1, newProduct);
+        
+        setProducts(newArray);
+        
+    }
 
 
-    //useEffect para buscar produtos
     useEffect(() => {
         getAllProducts();
-    }, [])
+    }, []);
+
+
 
     return (
-        <ProductsContext.Provider value={{products, filteredProducts, searchProduct, search, cleanSearch}}>
+        <ProductsContext.Provider value={{products, filteredProducts, searchProduct, search, cleanSearch, addProduct, subtractProduct}}>
             {children}
         </ProductsContext.Provider>
     )

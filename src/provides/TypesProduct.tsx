@@ -19,6 +19,8 @@ export interface IProductsContext{
     searchProduct: (data: ISerchData) => void;
     search: string;
     cleanSearch: () => void;
+    addProduct: (product: IProduct) => void;
+    subtractProduct: (product: IProduct) => void
 }
 
 export interface ISerchData{

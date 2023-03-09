@@ -2,7 +2,9 @@ import { StyledProductCard } from "./style";
 import cellphone from '../../assets/product-cellphone.svg';
 import {AiOutlinePlus, AiOutlineMinus} from 'react-icons/ai';
 import {FaTrash} from 'react-icons/fa';
-import { IProduct } from "../../provides/@types";
+import { IProduct } from "../../provides/TypesProduct";
+import { useContext } from "react";
+import { ProductsContext } from "../../provides/ProductsContext";
 
 interface IProductCardProps{
     product: IProduct;
@@ -10,6 +12,7 @@ interface IProductCardProps{
 
 export const ProductCard = ({product}: IProductCardProps) => {
 
+    const {addProduct, subtractProduct} = useContext(ProductsContext)
     return (
         <StyledProductCard>
             <div className="content">
@@ -26,9 +29,9 @@ export const ProductCard = ({product}: IProductCardProps) => {
 
             <div className="buttonsAndPrice">
                 <div className="quatityButtons">
-                    <button> <AiOutlineMinus /> </button>
+                    <button onClick={()=>subtractProduct(product)}> <AiOutlineMinus /> </button>
                     <small>{product.qtd}</small>
-                    <button> <AiOutlinePlus /> </button>
+                    <button onClick={()=>addProduct(product)}> <AiOutlinePlus /> </button>
                 </div>
 
                 <p>{`R$${product.price.split('.').join(',')}`}</p>
