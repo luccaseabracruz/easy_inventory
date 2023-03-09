@@ -1,16 +1,20 @@
+import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { StyleFormRegister } from "../../Pages/RegisterPage/style";
 import { IRegisterFormValues } from "../../provides/TypesUser";
 import { UserContext } from "../../provides/UserContext";
 import { InputForm } from "../InputForm/InputForm";
+import { formRegisterSchema } from "./formRegisterSchema";
 
 export const FormRegister = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IRegisterFormValues>();
+  } = useForm<IRegisterFormValues>({
+    resolver: yupResolver(formRegisterSchema),
+  });
 
   const { userRegister } = useContext(UserContext);
 
@@ -21,21 +25,21 @@ export const FormRegister = () => {
   return (
     <StyleFormRegister onSubmit={handleSubmit(submit)}>
       <InputForm
-        label="name"
+        label="Name"
         placeholder="Digite seu Nome"
         type="text"
         register={register("name")}
         error={errors.name}
       />
       <InputForm
-        label="email"
+        label="Email"
         placeholder="Digite seu Email"
         type="email"
         register={register("email")}
         error={errors.email}
       />
       <InputForm
-        label="senha"
+        label="Senha"
         placeholder="Digite sua Senha"
         type="password"
         register={register("password")}
