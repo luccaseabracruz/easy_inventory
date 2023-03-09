@@ -8,17 +8,21 @@ import { ProductsContext, ProductsProvider } from "./provides/ProductsContext";
 import {UpdatePasswordPage} from './Pages/UpdatePasswordPage/UpdatePasswordPage';
 
 
+
 export const Router = () => {
   return (
     <Routes>
       <Route path="/" element={<Loginpage />} />
       <Route path="/register" element={<RegisterPage />} />
 
+      
+        
+        <Route path="/dashboard" element={<ProductsProvider> <DashBoard /></ProductsProvider> }>
 
-      <Route path="/dashboard" element={<ProductsProvider> <DashBoard /></ProductsProvider> }>
-        <Route path="/dashboard/myprofile" element={<ProductsProvider><MyProfile/></ProductsProvider>} />
-        <Route path="/dashboard/products" element={<ProductsProvider><ProductsPage /></ProductsProvider>} />
+            <Route path="/dashboard/myprofile" element={<ProductsProvider><MyProfile/></ProductsProvider>} />
+          <Route path="/dashboard/products" element={<ProductsProvider><ProductsPage /></ProductsProvider>} />
       </Route>
+
     </Routes>
   );
 };
