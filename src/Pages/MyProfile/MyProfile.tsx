@@ -1,5 +1,5 @@
 import { Inputs } from '../../components/Inputs/Inputs';
-import { Form } from './styles';
+import { Form,H1 } from './styles';
 import { useForm } from 'react-hook-form';
 import { iFormValuesMyProfile, IUser } from '../../provides/TypesUser'
 import { useContext, useEffect, useState } from 'react';
@@ -42,8 +42,9 @@ export const MyProfile = () => {
 
     return (
         <>
-            <h1>Olá {user?.name}</h1>
+            <H1>Olá {user?.name}, seja bem vindo</H1>
             <Form onSubmit={handleSubmit(getDatasFormPageMyProfile)}>
+                <h2>Editar Usuario</h2>
                 <Inputs nameInput='name' value={user?.name} name={user?.name} register={register} type={'text'} />
 
                 <Inputs nameInput='email' name={user?.email} register={register} type={'email'} />

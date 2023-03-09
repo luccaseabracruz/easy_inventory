@@ -99,8 +99,18 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
 
     };
 
-    const updatePasswordUser = (datas:IUpdateFormPassword) =>{
-      console.log(datas);
+    const updatePasswordUser = async (datas:IUpdateFormPassword) =>{
+      try{
+        const token = localStorage.getItem('@TOKEN');
+        const id = localStorage.getItem('@user');
+        const response  = await api.patch(`/users/${id}`,datas,{headers:{
+          Authorization: `Bearer ${token}`
+        }})
+        console.log(response);
+      }catch (error){
+        console.log(error);
+      }
+
     }
     
 

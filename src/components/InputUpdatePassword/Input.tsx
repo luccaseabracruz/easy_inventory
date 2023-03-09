@@ -13,11 +13,11 @@ interface IInputsPassword{
     placeholder?:string;
 }
 
-export const InputUpdatePassword = ({nameInput,register}:IInputsPassword) =>{
+export const InputUpdatePassword = ({nameInput,register,placeholder}:IInputsPassword) =>{
 
 
 
     return(
-        <Input type='password' {...register(nameInput)} />
+        <Input type='password'placeholder={placeholder} {...register(nameInput)} />
     )
 }
