@@ -1,10 +1,10 @@
-import { StyledProductsListContainer } from "./style"
-import {AiOutlineArrowLeft, AiOutlineArrowRight} from 'react-icons/ai'
-import { ProductCard } from "../ProductCard"
-import { useContext } from "react"
-import { ProductsContext } from "../../provides/ProductsContext"
-import { UserContext } from "../../provides/UserContext"
-import SearchTitle from "../SearchTitle"
+import { StyledProductsListContainer } from "./style";
+import {AiOutlineArrowLeft, AiOutlineArrowRight} from 'react-icons/ai';
+import { ProductCard } from "../ProductCard";
+import { useContext } from "react";
+import { ProductsContext } from "../../provides/ProductsContext";
+import { UserContext } from "../../provides/UserContext";
+import SearchTitle from "../SearchTitle";
 
 export const ProductsList = () => {
 

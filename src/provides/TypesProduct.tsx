@@ -31,6 +31,8 @@ export interface IProductsContext{
     openRemoveProductModal: boolean;
     setOpenRemoveProductModal: React.Dispatch<React.SetStateAction<boolean>>;
     openRemoveProductModalFunction: (product: IProduct) => void;
+    createProduct: (data: IProduct) => Promise<void>;
+    deleteProduct: (product: IProduct) => Promise<void>;
 }
 
 export interface ISerchData{

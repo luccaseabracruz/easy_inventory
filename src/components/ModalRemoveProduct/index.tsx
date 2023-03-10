@@ -6,7 +6,7 @@ import {AiOutlineClose} from 'react-icons/ai'
 
 export const ModalRemoveProduct = () => {
 
-    const {selectedProduct, setOpenRemoveProductModal} = useContext(ProductsContext);
+    const {selectedProduct, setOpenRemoveProductModal, deleteProduct} = useContext(ProductsContext);
 
 
     return (
@@ -18,8 +18,8 @@ export const ModalRemoveProduct = () => {
                 <span>Isso fará com que todos os itens com o mesmo nome sejam excluídos..</span>
 
                 <div className="buttonsContainer">
-                    <button className='cancelBtn'>Cancelar</button>
-                    <button className='removeBtn'>Excluir</button>
+                    <button className='cancelBtn' onClick={() => setOpenRemoveProductModal(false)}>Cancelar</button>
+                    <button className='removeBtn' onClick={() => deleteProduct(selectedProduct)}>Excluir</button>
                 </div>
             </div>
         </StyledModalContainer>

@@ -7,9 +7,11 @@ import { ProductsContext } from "../../provides/ProductsContext"
 import { StyledProductsPageContainer } from "./style"
 import {api} from '../../services/api';
 import {useNavigate} from 'react-router-dom';
+import { AiOutlinePlus } from "react-icons/ai";
+import { ModalCreateProduct } from "../../components/ModalCreateProduct copy";
 
 export const ProductsPage = () => {
-    const {openEditProductModal, openRemoveProductModal} = useContext(ProductsContext);
+    const {openEditProductModal, openRemoveProductModal, setOpenCreateProductModal, openCreateProductModal} = useContext(ProductsContext);
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -41,10 +43,13 @@ export const ProductsPage = () => {
 
             <InputSearch placeholder="Digite o nome do produto"/>
 
+            <button className="createBtn" onClick={()=> setOpenCreateProductModal(true)}><AiOutlinePlus />Criar Produto</button>
+
             <ProductsList />
 
             {openEditProductModal ? <ModalEditProduct /> : null}
             {openRemoveProductModal ? <ModalRemoveProduct /> : null}
+            {openCreateProductModal ? <ModalCreateProduct /> : null}
 
             
         </StyledProductsPageContainer>
