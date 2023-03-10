@@ -1,10 +1,10 @@
-import { StyledProductsListContainer } from "./style"
-import {AiOutlineArrowLeft, AiOutlineArrowRight} from 'react-icons/ai'
-import { ProductCard } from "../ProductCard"
-import { useContext } from "react"
-import { ProductsContext } from "../../provides/ProductsContext"
-import { UserContext } from "../../provides/UserContext"
-import SearchTitle from "../SearchTitle"
+import { StyledProductsListContainer } from "./style";
+import {AiOutlineArrowLeft, AiOutlineArrowRight} from 'react-icons/ai';
+import { ProductCard } from "../ProductCard";
+import { useContext } from "react";
+import { ProductsContext } from "../../provides/ProductsContext";
+import { UserContext } from "../../provides/UserContext";
+import SearchTitle from "../SearchTitle";
 
 export const ProductsList = () => {
 
@@ -17,11 +17,21 @@ export const ProductsList = () => {
             {/* {true && <SearchTitle />} */}
             {filteredProducts.length > 0 && <SearchTitle />}
 
-            <div className="pagination">
-                <button> <AiOutlineArrowLeft /> </button>
-                <p>Nº</p>
-                <button> <AiOutlineArrowRight /> </button>
-            </div>
+            {filteredProducts.length === 0 && products.length > 10 ? (
+                <div className="pagination">
+                    <button> <AiOutlineArrowLeft /> </button>
+                    <p>Nº</p>
+                    <button> <AiOutlineArrowRight /> </button>
+                </div>
+            ): null}
+
+            {filteredProducts.length > 10 ? (
+                <div className="pagination">
+                    <button> <AiOutlineArrowLeft /> </button>
+                    <p>Nº</p>
+                    <button> <AiOutlineArrowRight /> </button>
+                </div>
+            ): null}
 
             <ul className="productList">
                 {products.length === 0 ? (

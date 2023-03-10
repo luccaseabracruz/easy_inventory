@@ -7,17 +7,14 @@ import { UserContext } from '../../provides/UserContext'
 import { api } from '../../services/api';
 import * as yup from 'yup'
 import {yupResolver} from '@hookform/resolvers/yup'
-import { Outlet } from 'react-router-dom';
+import { Outlet, useNavigate } from 'react-router-dom';
 import {UpdatePasswordPage} from '../UpdatePasswordPage/UpdatePasswordPage'
 
 
 export const MyProfile = () => {
 
+    const navigate = useNavigate();
     const { getDatasFormPageMyProfile, userLogin, user, setUser } = useContext(UserContext);
-
-
-
-
     const { register, handleSubmit } = useForm<iFormValuesMyProfile>({});
 
 
@@ -35,10 +32,11 @@ export const MyProfile = () => {
                 setUser(response.data);
             } catch (erros) {
                 console.log(erros);
+                navigate('/');
             }
         }
         getDatasUser();
-    }, [])
+    }, []);
 
     return (
         <>

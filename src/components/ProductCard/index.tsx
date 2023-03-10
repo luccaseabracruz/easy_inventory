@@ -1,10 +1,9 @@
 import { StyledProductCard } from "./style";
-import cellphone from '../../assets/product-cellphone.svg';
-import {AiOutlinePlus, AiOutlineMinus} from 'react-icons/ai';
+import {AiOutlinePlus, AiOutlineMinus, AiTwotoneEdit} from 'react-icons/ai';
 import {FaTrash} from 'react-icons/fa';
-import { IProduct } from "../../provides/TypesProduct";
-import { useContext } from "react";
-import { ProductsContext } from "../../provides/ProductsContext";
+import { IProduct } from '../../provides/TypesProduct';
+import { useContext } from 'react';
+import { ProductsContext } from '../../provides/ProductsContext';
 
 interface IProductCardProps{
     product: IProduct;
@@ -12,17 +11,23 @@ interface IProductCardProps{
 
 export const ProductCard = ({product}: IProductCardProps) => {
 
-    const {addProduct, subtractProduct} = useContext(ProductsContext)
+    const {addProduct, subtractProduct, openEditProductModalFunction, openRemoveProductModalFunction} = useContext(ProductsContext)
     return (
         <StyledProductCard>
             <div className="content">
 
-                <img src={product.image} alt={`Foto de ${product.name}`}/>
+                <div className="imageContainer">
+                    <img src={product.image} alt={`Foto de ${product.name}`}/>
+                </div>
 
                 <div className="info">
                     <p>{product.name}</p>
                     <small>{product.category}</small>
-                    <button> <FaTrash /> Excluir</button>
+                    <div className="removeAdnEdit">
+                        <button onClick={()=> openRemoveProductModalFunction(product)}> <FaTrash /> Excluir</button>
+                        <button onClick={()=> openEditProductModalFunction(product)}> <AiTwotoneEdit /> Editar</button>
+
+                    </div>
                 </div>
 
             </div>
@@ -34,7 +39,7 @@ export const ProductCard = ({product}: IProductCardProps) => {
                     <button onClick={()=>addProduct(product)}> <AiOutlinePlus /> </button>
                 </div>
 
-                <p>{`R$${product.price.split('.').join(',')}`}</p>
+                <p className="price">{`R$${Number(product.price).toFixed(2).split('.').join(',')}`}</p>
             </div>
 
 

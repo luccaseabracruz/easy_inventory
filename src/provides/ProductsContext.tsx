@@ -1,6 +1,7 @@
 import { createContext, useEffect, useState } from "react";
 import { IDefaultProviderProps, IProduct, IProductsContext, ISerchData } from "./TypesProduct";
 import { api } from "../services/api";
+import { toast } from "react-toastify";
 
 export const ProductsContext = createContext<IProductsContext>({} as IProductsContext);
 
@@ -9,6 +10,10 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
     const [products, setProducts] = useState([] as IProduct[]);
     const [filteredProducts, setFilteredProducts] = useState([] as IProduct[]);
     const [search, setSearch] = useState('');
+    const [openEditProductModal, setOpenEditProductModal] = useState(false);
+    const [selectedProduct, setSelectProduct] = useState({} as IProduct);
+    const [openCreateProductModal, setOpenCreateProductModal] = useState(false);
+    const [openRemoveProductModal, setOpenRemoveProductModal] = useState(false);
 
     const getAllProducts = async () => {
         try {
@@ -20,10 +25,10 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
                 }
             });
             
-            setProducts(response.data)
+            setProducts(response.data);
             
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 
@@ -33,7 +38,7 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
             product.name.toLowerCase().includes(currentSearch.toLowerCase())
         ));
 
-        setSearch(currentSearch)
+        setSearch(currentSearch);
     };
 
     const cleanSearch = () => {
@@ -51,7 +56,7 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
             })
             
         } catch (error) {
-            console.log(error)
+            console.log(error);
         }
     }
 
@@ -82,15 +87,72 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
         
     }
 
+    const openEditProductModalFunction = (product: IProduct) => {
+        setOpenEditProductModal(true);
+        setSelectProduct(product);
+    }
+    const openRemoveProductModalFunction = (product: IProduct) => {
+        setOpenRemoveProductModal(true);
+        setSelectProduct(product);
+    }
+
+    const editProduct = async (product: IProduct, data: IProduct) => {
+        try {
+            const token = localStorage.getItem('@TOKEN')
+            const response = await api.patch(`products/${product.id}`, data, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            toast.success('Informações registradas');
+            setOpenEditProductModal(false);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const createProduct = async (data: IProduct) => {
+        try {
+            const token = localStorage.getItem('@TOKEN')
+            const response = await api.post(`products`, data, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            toast.success('Produto criado');
+            setOpenCreateProductModal(false);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const deleteProduct = async (product: IProduct) => {
+        try {
+            const token = localStorage.getItem('@TOKEN')
+            const response = await api.delete(`products/${product.id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            toast.success('Produto removido');
+            setOpenRemoveProductModal(false);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
     useEffect(() => {
         getAllProducts();
-    }, []);
+    }, [openEditProductModal, openCreateProductModal, openRemoveProductModal]);
 
 
 
     return (
-        <ProductsContext.Provider value={{products, filteredProducts, searchProduct, search, cleanSearch, addProduct, subtractProduct}}>
+        <ProductsContext.Provider value={{products, filteredProducts, searchProduct, search, cleanSearch, addProduct, subtractProduct, openEditProductModal, setOpenEditProductModal, selectedProduct, openEditProductModalFunction, editProduct, openCreateProductModal, setOpenCreateProductModal, openRemoveProductModal, setOpenRemoveProductModal, openRemoveProductModalFunction, createProduct, deleteProduct }}>
             {children}
         </ProductsContext.Provider>
     )
