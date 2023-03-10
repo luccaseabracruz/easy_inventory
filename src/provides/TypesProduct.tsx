@@ -12,6 +12,14 @@ export interface IProduct{
     qtd: string;
     id: number;
 }
+export interface IStatic{
+    name:string;
+    quantidade:string;
+}
+export interface IStaticProductsExpencie{
+    name:string;
+    preço:string;
+}
 
 export interface IProductsContext{
     products: IProduct[];
