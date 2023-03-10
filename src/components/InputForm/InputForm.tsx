@@ -9,14 +9,22 @@ interface IInputProps {
   placeholder: string;
 }
 
-export const InputForm = ({label, register, error, type, placeholder}: IInputProps) => (
+export const InputForm = ({
+  label,
+  register,
+  error,
+  type,
+  placeholder,
+}: IInputProps) => (
   <fieldset>
     {label && <label htmlFor={register.name}>{label} </label>}
     <input
       type={type}
       placeholder={placeholder}
       {...register}
-      {...(error ? <p>{error.message}</p> : null)}
-      />
+    />
+    {error ? (
+      <p>{error.message}</p>
+    ) : null}
   </fieldset>
 );

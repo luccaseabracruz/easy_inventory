@@ -9,16 +9,23 @@ export const StyledSection = styled.section`
   img {
     height: 450px;
   }
+  @media (max-width: 690px) {
+    padding-top: 30px;
+
+    .img__container {
+      display: none;
+    }
+  }
 `;
 
-export const StykedForm = styled.form`
+export const StyledForm = styled.form`
   padding-left: 20px;
-  width: 400px;
+  width: 375px;
   height: 450px;
 
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   gap: 20px;
 
@@ -27,13 +34,23 @@ export const StykedForm = styled.form`
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 20px;
 
+  h1 {
+    align-self: flex-start;
+    margin-left: 70px;
+  }
+
   fieldset {
     padding: 0;
-    width: 100%;
+    width: 90%;
     border: none;
     display: flex;
     flex-direction: column;
+    align-items: center;
     gap: 5px;
+  }
+  label {
+    align-self: flex-start;
+    padding-left: 50px;
   }
   input {
     width: 70%;
@@ -43,15 +60,18 @@ export const StykedForm = styled.form`
   button {
     margin-top: 20px;
     cursor: pointer;
-    width: 73%;
+    width: 69%;
     height: 30px;
     left: 280px;
     top: 2117px;
 
     background: #26f13a;
-    /* color-primary */
 
     border: 2px solid #27ae60;
     border-radius: 5px;
+  }
+
+  @media (max-width: 690px) {
+    height: 400px;
   }
 `;

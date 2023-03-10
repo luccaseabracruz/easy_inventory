@@ -5,8 +5,8 @@ export const formRLoginSchema = yup.object().shape({
   password: yup
     .string()
     .required("obrigatório")
-    .matches(
-      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+=[\]{};':"\\|,.<>/?]).{6,}$/,
-      "Senha precisa ter no mínimo 6 caracteres, contendo: 1 letra maiúscula, 1 letra minúscula, 1 símbolo, 1 número."
-    ),
+    .matches(/(\d)/, "Deve ter pelo menos 1 numero")
+    .matches(/[a-z]/, "Deve ter pelo menos uma letra minuscula")
+    .matches(/[A-Z]/, "Deve ter pelo menos uma letra maiuscula")
+    .matches(/(\W|_)/, "Deve ter pelo menos 1 simbolo"),
 });

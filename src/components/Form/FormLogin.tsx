@@ -1,7 +1,7 @@
 import { yupResolver } from "@hookform/resolvers/yup";
 import React, { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { StykedForm } from "../../Pages/LoginPage/style";
+import { StyledForm } from "../../Pages/LoginPage/style";
 import { ILoginValues } from "../../provides/TypesUser";
 import { UserContext } from "../../provides/UserContext";
 import { InputForm } from "../InputForm/InputForm";
@@ -23,23 +23,25 @@ export const FormLogin = () => {
   };
 
   return (
-    <StykedForm onSubmit={handleSubmit(submit)}>
-      <h1>Login</h1>
-      <InputForm
-        label="E-mail"
-        placeholder="Digite seu Email"
-        type="email"
-        register={register("email")}
-        error={errors.email}
-      />
-      <InputForm
-        label="Senha"
-        placeholder="Digite sua Senha"
-        type="password"
-        register={register("password")}
-        error={errors.password}
-      />
-      <button>Entrar</button>
-    </StykedForm>
+    <>
+      <StyledForm onSubmit={handleSubmit(submit)}>
+        <h1>Login</h1>
+        <InputForm
+          label="E-mail"
+          placeholder="Digite seu Email"
+          type="email"
+          register={register("email")}
+          error={errors.email}
+        />
+        <InputForm
+          label="Senha"
+          placeholder="Digite sua Senha"
+          type="password"
+          register={register("password")}
+          error={errors.password}
+        />
+        <button>Entrar</button>
+      </StyledForm>
+    </>
   );
 };

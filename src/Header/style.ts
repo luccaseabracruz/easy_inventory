@@ -21,4 +21,11 @@ export const StyledHeader = styled.header`
     text-decoration: none;
     color: white;
   }
+
+  @media (max-width: 500px) {
+      display: flex;
+      width: 100%;
+      flex-direction: column;
+      height: 110px;
+  }
 `;
