@@ -24,6 +24,7 @@ export const FormRegister = () => {
 
   return (
     <StyleFormRegister onSubmit={handleSubmit(submit)}>
+      <h1>Register</h1>
       <InputForm
         label="Name"
         placeholder="Digite seu Nome"

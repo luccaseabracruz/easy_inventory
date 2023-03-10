@@ -1,5 +1,5 @@
 import React, { createContext, useEffect } from "react";
-import { StykedForm, StyledSection } from "./style";
+import { StyledSection } from "./style";
 import img from "../../assets/mulher-login.svg";
 import { UserContext } from "../../provides/UserContext";
 import { useContext } from "react";
@@ -36,8 +36,8 @@ export const Loginpage = () => {
     <>
       <Header />
       <StyledSection>
-        <div>
-          <img src={img} alt="" />
+        <div className="img__container">
+          <img src={img} alt=""/>
         </div>
         <FormLogin />
       </StyledSection>
