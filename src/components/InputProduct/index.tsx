@@ -7,7 +7,7 @@ interface IInputProductProps{
     label: string;
     placeholder: string;
     inputKey: 'image' | 'name' | 'id' | 'price' | 'category' | 'qtd';
-    defaultValue: string;
+    defaultValue?: string;
     register: UseFormRegister<IProduct>;
     // Inputerror?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> |  undefined;
 }

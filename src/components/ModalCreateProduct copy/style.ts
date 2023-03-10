@@ -11,6 +11,9 @@ export const StyledModalContainer = styled.div`
     height: 100vh;
     width: 100vw;
 
+    button{
+        cursor: pointer;
+    }
 
     .box{
         position: relative;
@@ -25,6 +28,27 @@ export const StyledModalContainer = styled.div`
         position: absolute;
         top:  .3rem;
         right: .3rem;
+    }
+
+    small{
+        color: var(--color-feedback-negative);
+    }
+
+    .submitBtn{
+        margin-top: 1rem;
+        width: 100%;
+        padding: .5rem;
+
+        background-color: var(--color-feedback-positive);
+        border: none;
+        border-radius: 4px;
+        color: white;
+        font-size: 1rem;
+        font-weight: 500;
+        transition: .1s;
+    }
+    .submitBtn:hover{
+        opacity: .9;
     }
 
 

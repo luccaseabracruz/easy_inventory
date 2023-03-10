@@ -112,15 +112,47 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
         }
     }
 
+    const createProduct = async (data: IProduct) => {
+        try {
+            const token = localStorage.getItem('@TOKEN')
+            const response = await api.post(`products`, data, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            toast.success('Produto criado');
+            setOpenCreateProductModal(false);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    const deleteProduct = async (product: IProduct) => {
+        try {
+            const token = localStorage.getItem('@TOKEN')
+            const response = await api.delete(`products/${product.id}`, {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            })
+
+            toast.success('Produto removido');
+            setOpenRemoveProductModal(false);
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
 
     useEffect(() => {
         getAllProducts();
-    }, [openEditProductModal]);
+    }, [openEditProductModal, openCreateProductModal, openRemoveProductModal]);
 
 
 
     return (
-    <ProductsContext.Provider value={{products, filteredProducts, searchProduct, search, cleanSearch, addProduct, subtractProduct, openEditProductModal, setOpenEditProductModal, selectedProduct, openEditProductModalFunction, editProduct, openCreateProductModal, setOpenCreateProductModal, openRemoveProductModal, setOpenRemoveProductModal, openRemoveProductModalFunction }}>
+        <ProductsContext.Provider value={{products, filteredProducts, searchProduct, search, cleanSearch, addProduct, subtractProduct, openEditProductModal, setOpenEditProductModal, selectedProduct, openEditProductModalFunction, editProduct, openCreateProductModal, setOpenCreateProductModal, openRemoveProductModal, setOpenRemoveProductModal, openRemoveProductModalFunction, createProduct, deleteProduct }}>
             {children}
         </ProductsContext.Provider>
     )
