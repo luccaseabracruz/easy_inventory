@@ -36,7 +36,7 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
     const searchProduct = (data: ISerchData) => {
         const currentSearch = data.inputValue;
         setFilteredProducts(products.filter((product) => 
-            product.name.toLowerCase().includes(currentSearch.toLowerCase())
+            product.name.toLowerCase().includes(currentSearch.toLowerCase()) || product.category.toLowerCase().includes(currentSearch.toLowerCase())
         ));
 
         setSearch(currentSearch);
