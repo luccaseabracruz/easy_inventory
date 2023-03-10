@@ -35,7 +35,7 @@ export const DashBoard = () => {
     }
 
   }, [])
-  console.log(user?.avatar);
+ 
 
   return (
     <DivPai>
@@ -47,7 +47,7 @@ export const DashBoard = () => {
         <ul>
           <li onClick={() => navigate("/dashboard/myprofile")}> Meu Perfil</li>
           <li onClick={() => navigate("/dashboard/products")}>Produtos</li>
-          <li onClick={() => navigate("/dashboard/products")}>Estatísticas</li>
+          <li onClick={() => navigate("/dashboard/statistic")}>Estatísticas</li>
         </ul>
       </MenuNavigation>
 
