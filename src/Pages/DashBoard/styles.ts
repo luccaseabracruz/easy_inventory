@@ -49,18 +49,6 @@ export const MenuNavigation = styled.div`
             height: 120px;
             border-radius: 50px;
         }
-        button{
-            background-color: var( --color-segundary);
-            border: none;
-            padding: 5px;
-            color: var(--color-grey0);
-            font-family: 'Inter',sans-serif;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover{
-            background-color: var(--color-primary);
-        }
     }
 
     ul{
@@ -72,6 +60,23 @@ export const MenuNavigation = styled.div`
         align-items: center;
         width: 150px;
         padding-left: 0px;
+
+        button{
+            background-color: var(--color-primary);
+            border: none;
+            padding: 16px 22px;
+            color: var(--color-grey0);
+            font-family: 'Inter',sans-serif;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 40px;
+            font-size: 1.2rem;
+        }
+        button:hover{
+            background-color: var( --color-segundary);
+
+        }
+        
     }
     li{
         cursor: pointer;

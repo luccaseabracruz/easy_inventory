@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { UserContext } from '../../provides/UserContext';
 import { useContext } from 'react';
 import {api} from '../../services/api';
+import {SlLogout} from 'react-icons/sl';
 
 
 export const DashBoard = () => {
@@ -42,12 +43,13 @@ export const DashBoard = () => {
       <MenuNavigation>
         <div className="image">
           {user?.avatar ? <img src={user.avatar}/> : <img src={Retrato} />}
-          <h1>{user?.name} <button onClick={userlogout}>Sair</button></h1>
+          <h1>{user?.name}</h1>
         </div>
         <ul>
           <li onClick={() => navigate("/dashboard/myprofile")}> Meu Perfil</li>
           <li onClick={() => navigate("/dashboard/products")}>Produtos</li>
           <li onClick={() => navigate("/dashboard/statistic")}>Estatísticas</li>
+          <button onClick={userlogout}><SlLogout/></button>
         </ul>
       </MenuNavigation>
 
