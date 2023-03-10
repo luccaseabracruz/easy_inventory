@@ -51,6 +51,6 @@ export interface IUserContext {
   getDatasFormPageMyProfile:(datas:iFormValuesMyProfile)=>void;
   updatePasswordUser: (datas:IUpdateFormPassword)=>void;
   checkUser: IResponseFormLogin | boolean;
-  setCheckUser:React.Dispatch<React.SetStateAction<IResponseFormLogin | boolean>>
+  setCheckUser:React.Dispatch<React.SetStateAction<IResponseFormLogin | boolean>>;
 }
 
