@@ -3,11 +3,12 @@ import {InputUpdatePassword} from '../../components/InputUpdatePassword/Input'
 import {useForm} from 'react-hook-form';
 import { IUpdateFormPassword } from '../../provides/TypesUser';
 import { UserContext } from '../../provides/UserContext';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import * as yup from 'yup';
 import {yupResolver} from '@hookform/resolvers/yup';
 
 export const UpdatePasswordPage = ()=>{
+
 
     const schema = yup.object({}).shape({
         password:yup.string().required('Senha obrigatoria').min(6,'Minimo 6 caracteres')
@@ -17,16 +18,22 @@ export const UpdatePasswordPage = ()=>{
         .matches(/(\W|_)/, 'Deve ter pelo menos 1 simbolo'),
         confirmPassword: yup.string().oneOf([yup.ref('password')],'Senhas não iguais')
     })
-    const {register,handleSubmit,formState:{errors}} = useForm<IUpdateFormPassword>({
+    const {register,handleSubmit,formState:{errors},reset} = useForm<IUpdateFormPassword>({
         resolver:yupResolver(schema)
     });
 
+    const Intermediary = (datas:IUpdateFormPassword)=>{
+      updatePasswordUser(datas);
+      reset();
+    }
+
+
     const {updatePasswordUser} = useContext(UserContext);
     return (
-        <Form onSubmit={handleSubmit(updatePasswordUser)}>
+        <Form onSubmit={handleSubmit(Intermediary)}>
 
           <h2>Alterar senha</h2>
-          <InputUpdatePassword nameInput='password' placeholder='Senha' register={register}/>
+          <InputUpdatePassword nameInput='password'  placeholder='Senha' register={register}/>
             {errors.password?.message}
 
           <InputUpdatePassword nameInput='confirmPassword' placeholder='Confirmar Senha ' register={register}/>

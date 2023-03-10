@@ -1,4 +1,4 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { api } from "../services/api";
@@ -56,8 +56,9 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
   const userlogout = async () => {
     try {
       setUser(null);
-      localStorage.removeItem("@TOKEN");
-      navigate("/");
+      localStorage.clear();
+      navigate('/');
+      toast.success('Deslogado com sucesso');
     } catch (error) {
       console.log(error);
     }
@@ -80,7 +81,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       }
 
       if(array.length == 0){
-        console.log('atualize algum campo')
+        toast.warning('Preencha pelo menos 1 campo');
       }else{
         const token = localStorage.getItem('@TOKEN');
         const id = localStorage.getItem('@user');
@@ -95,7 +96,8 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
         }})
         console.log(response);
         //feedback
-        document.location.reload();
+        toast.success('Usuario editado com sucesso');
+        setUser(response.data);
       }
 
     };
@@ -107,12 +109,14 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
         const response  = await api.patch(`/users/${id}`,datas,{headers:{
           Authorization: `Bearer ${token}`
         }})
-        console.log(response);
+        toast.success('Senha alterada com sucesso');
+        
       }catch (error){
-        console.log(error);
+        toast.error('Ops! algo deu errado');
       }
 
     }
+
     
 
 
