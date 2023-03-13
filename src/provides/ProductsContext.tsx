@@ -14,6 +14,7 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
     const [selectedProduct, setSelectProduct] = useState({} as IProduct);
     const [openCreateProductModal, setOpenCreateProductModal] = useState(false);
     const [openRemoveProductModal, setOpenRemoveProductModal] = useState(false);
+    const [totalActive, setTotalActive] = useState(0)
 
     const getAllProducts = async () => {
         try {
@@ -35,7 +36,7 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
     const searchProduct = (data: ISerchData) => {
         const currentSearch = data.inputValue;
         setFilteredProducts(products.filter((product) => 
-            product.name.toLowerCase().includes(currentSearch.toLowerCase())
+            product.name.toLowerCase().includes(currentSearch.toLowerCase()) || product.category.toLowerCase().includes(currentSearch.toLowerCase())
         ));
 
         setSearch(currentSearch);
@@ -144,15 +145,27 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
         }
     }
 
+    const calculateTotalActive = () => {
+        const total = products.reduce((previousValue, currentValue) =>
+            previousValue + (Number(currentValue.price) * Number(currentValue.qtd)), 0
+        )
+
+        setTotalActive(total);
+    }
+
 
     useEffect(() => {
         getAllProducts();
     }, [openEditProductModal, openCreateProductModal, openRemoveProductModal]);
 
+    useEffect(() => {
+        calculateTotalActive()
+    }, [products])
+
 
 
     return (
-        <ProductsContext.Provider value={{products, filteredProducts, searchProduct, search, cleanSearch, addProduct, subtractProduct, openEditProductModal, setOpenEditProductModal, selectedProduct, openEditProductModalFunction, editProduct, openCreateProductModal, setOpenCreateProductModal, openRemoveProductModal, setOpenRemoveProductModal, openRemoveProductModalFunction, createProduct, deleteProduct }}>
+        <ProductsContext.Provider value={{products, filteredProducts, searchProduct, search, cleanSearch, addProduct, subtractProduct, openEditProductModal, setOpenEditProductModal, selectedProduct, openEditProductModalFunction, editProduct, openCreateProductModal, setOpenCreateProductModal, openRemoveProductModal, setOpenRemoveProductModal, openRemoveProductModalFunction, createProduct, deleteProduct, totalActive }}>
             {children}
         </ProductsContext.Provider>
     )

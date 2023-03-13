@@ -4,10 +4,10 @@ import { BiSearch } from 'react-icons/bi'
 import { useContext } from "react";
 import { ProductsContext } from "../../provides/ProductsContext";
 import { ISerchData } from "../../provides/TypesProduct";
-import * as yup from 'yup'
+import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
  
-//Preciso saber se isto estará no contexto ou aqui mesmo
+
 
 interface IInputSearchProps{
     placeholder: string;

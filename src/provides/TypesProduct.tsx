@@ -41,6 +41,7 @@ export interface IProductsContext{
     openRemoveProductModalFunction: (product: IProduct) => void;
     createProduct: (data: IProduct) => Promise<void>;
     deleteProduct: (product: IProduct) => Promise<void>;
+    totalActive: number;
 }
 
 export interface ISerchData{

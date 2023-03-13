@@ -16,15 +16,20 @@ export const StyledInputSearch = styled.form`
         width: 85%;
         border: none;
         outline: none;
+        font-size: 1rem;
     }
 
     button{
-        border: 2px solid blue;
+        height: 2rem;
+        width: 2rem;
         cursor: pointer;
         transition: .2s;
+        border: none;
+        border-radius: .2rem;
+        background-color: transparent;
     }
     button:hover{
-        background-color: grey; 
+        background-color: var(--color-grey100);
     }
 
     small{

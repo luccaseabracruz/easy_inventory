@@ -4,7 +4,6 @@ export const StyledProductsListContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 2px solid green;
 
     .pagination{
         display: flex;
@@ -15,9 +14,9 @@ export const StyledProductsListContainer = styled.div`
     ul{
         display: flex;
         flex-direction: column;
-        gap: .5rem;
+        gap: 1rem;
         padding: 0;
-        margin: 0;
+        margin: .5rem 0 0;
         width: 100%;
     }
 

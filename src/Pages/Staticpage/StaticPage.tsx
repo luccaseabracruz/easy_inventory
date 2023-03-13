@@ -6,7 +6,7 @@ import { IProduct, IStatic, IStaticProductsExpencie } from '../../provides/Types
 import { ContainerStatistic } from './styles'
 
 export const StaticPage = () => {
-    const { products } = useContext(ProductsContext);
+    const { products, totalActive } = useContext(ProductsContext);
     const [data, setData] = useState([] as IStatic[]);
     const [productExpencie, setExpencie] = useState([] as IStaticProductsExpencie[])
 
@@ -31,6 +31,9 @@ export const StaticPage = () => {
 
     return (
         <ContainerStatistic>
+
+            <h1>Total em ativos: R${String(totalActive.toFixed(2)).split('.').join(',')}</h1>
+
             <h2>Produto que tem mais quantidade no estoque</h2>
 
             <section role='Produto mais no estoque'>
