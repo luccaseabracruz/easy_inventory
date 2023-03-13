@@ -11,7 +11,7 @@ export interface IProduct{
     category: string;
     qtd: string;
     id: number;
-    sales:number;
+    sales?:number;
 }
 export interface IStatic{
     name:string;
