@@ -31,6 +31,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       navigate("/");
     } catch (error) {
       console.log(error);
+      console.log(error)
       toast('Verifique seu email!')
     } finally {
       setLoading(false);
