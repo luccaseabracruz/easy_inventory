@@ -38,8 +38,8 @@ export const StaticPage = () => {
                 }})
                 const array = [...response.data];
                 array.map(element=>{
-                    console.log(element);
-                    moreSales.push({name:element.name,id:element.id,sales:element.sales});
+                    const test = parseInt(element.sales + 1);
+                    moreSales.push({name:element.name,id:element.id,sales:test});
                     
                 })
                 setSales2(moreSales);

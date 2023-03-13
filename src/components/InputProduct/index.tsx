@@ -13,13 +13,13 @@ interface IInputProductProps{
     vendidos?:number;
 }
 
-export const InputProduct = ({ label, placeholder, inputKey, defaultValue, register,vendidos}: IInputProductProps) => {
+export const InputProduct = ({ label, placeholder, inputKey, defaultValue,vendidos, register}: IInputProductProps) => {
 
 
     return (
         <StyledInputContainer>
             <label htmlFor={inputKey}>{label}</label>
-            <input type="text" id={inputKey} placeholder={placeholder} value={vendidos} {...register(inputKey)}/>
+            <input type="text" id={inputKey} placeholder={placeholder} value={vendidos} defaultValue={defaultValue} {...register(inputKey)}/>
         </StyledInputContainer>
     )
 }

@@ -81,7 +81,8 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
 
         products.map(element=>{
             if(element.id === product.id){
-                const newSales = (element.sales) as number + 1 ;
+                
+                const newSales = element.sales + 1;
                 element.sales = newSales;
 
                 const data = {
@@ -110,6 +111,7 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
 
     const openEditProductModalFunction = (product: IProduct) => {
         setOpenEditProductModal(true);
+        console.log(product);
         setSelectProduct(product);
     }
     const openRemoveProductModalFunction = (product: IProduct) => {
