@@ -31,6 +31,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       navigate("/");
     } catch (error) {
       console.log(error);
+      toast('Verifique seu email!')
     } finally {
       setLoading(false);
     }
@@ -48,6 +49,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
       setCheckUser(response.data);
     } catch (error) {
       console.log(error);
+      toast("E-mail ou senha inválidos. Por favor, tente novamente.");
     } finally {
       setLoading(false);
     }
