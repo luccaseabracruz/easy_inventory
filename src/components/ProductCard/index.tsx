@@ -1,6 +1,5 @@
 import { StyledProductCard } from "./style";
-import {AiOutlinePlus, AiOutlineMinus, AiTwotoneEdit} from 'react-icons/ai';
-import {FaTrash} from 'react-icons/fa';
+import {AiOutlinePlus, AiOutlineMinus, AiTwotoneEdit, AiOutlineEye} from 'react-icons/ai';
 import { IProduct } from '../../provides/TypesProduct';
 import { useContext } from 'react';
 import { ProductsContext } from '../../provides/ProductsContext';
@@ -11,7 +10,7 @@ interface IProductCardProps{
 
 export const ProductCard = ({product}: IProductCardProps) => {
 
-    const {addProduct, subtractProduct, openEditProductModalFunction, openRemoveProductModalFunction} = useContext(ProductsContext)
+    const {addProduct, subtractProduct, openProductModalFunction} = useContext(ProductsContext)
     return (
         <StyledProductCard>
             <div className="content">
@@ -24,9 +23,7 @@ export const ProductCard = ({product}: IProductCardProps) => {
                     <p>{product.name}</p>
                     <small>{product.category}</small>
                     <div className="removeAdnEdit">
-                        <button onClick={()=> openRemoveProductModalFunction(product)}> <FaTrash /> Excluir</button>
-                        <button onClick={()=> openEditProductModalFunction(product)}> <AiTwotoneEdit /> Editar</button>
-
+                        <button onClick={()=> openProductModalFunction(product)}>Ver mais</button>
                     </div>
                 </div>
 

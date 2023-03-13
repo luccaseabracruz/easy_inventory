@@ -8,10 +8,19 @@ import { StyledProductsPageContainer } from "./style"
 import {api} from '../../services/api';
 import {useNavigate} from 'react-router-dom';
 import { AiOutlinePlus } from "react-icons/ai";
-import { ModalCreateProduct } from "../../components/ModalCreateProduct copy";
+import { ModalCreateProduct } from "../../components/ModalCreateProduct";
+import { ModalProduct } from "../../components/ModalProduct";
 
 export const ProductsPage = () => {
-    const {openEditProductModal, openRemoveProductModal, setOpenCreateProductModal, openCreateProductModal} = useContext(ProductsContext);
+
+    const {
+        openEditProductModal,
+        openRemoveProductModal,
+        setOpenCreateProductModal,
+        openCreateProductModal,
+        openProductModal
+    } = useContext(ProductsContext);
+
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -47,6 +56,7 @@ export const ProductsPage = () => {
 
             <ProductsList />
 
+            {openProductModal ? <ModalProduct /> : null}
             {openEditProductModal ? <ModalEditProduct /> : null}
             {openRemoveProductModal ? <ModalRemoveProduct /> : null}
             {openCreateProductModal ? <ModalCreateProduct /> : null}

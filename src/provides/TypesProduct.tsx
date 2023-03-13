@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { ISerchData } from "../components/InputSearch/types";
 
 export interface IDefaultProviderProps {
     children: ReactNode;
@@ -32,20 +33,20 @@ export interface IProductsContext{
     openEditProductModal: boolean;
     setOpenEditProductModal: React.Dispatch<React.SetStateAction<boolean>>;
     selectedProduct: IProduct;
-    openEditProductModalFunction: (product: IProduct) => void;
-    editProduct: (product: IProduct, data: IProduct) => Promise<void>;
+    openEditProductModalFunction: () => void;
+    editProduct: (data: IProduct) => Promise<void>;
     openCreateProductModal: boolean;
     setOpenCreateProductModal: React.Dispatch<React.SetStateAction<boolean>>;
     openRemoveProductModal: boolean;
     setOpenRemoveProductModal: React.Dispatch<React.SetStateAction<boolean>>;
-    openRemoveProductModalFunction: (product: IProduct) => void;
+    openRemoveProductModalFunction: () => void;
     createProduct: (data: IProduct) => Promise<void>;
-    deleteProduct: (product: IProduct) => Promise<void>;
+    deleteProduct: () => Promise<void>;
     totalActive: number;
-}
+    openProductModal: boolean;
+    setOpenProductModal: React.Dispatch<React.SetStateAction<boolean>>;
+    openProductModalFunction: (product: IProduct) => void;
 
-export interface ISerchData{
-    inputValue: string;
 }
 
 export interface IModalEditProductProps{
