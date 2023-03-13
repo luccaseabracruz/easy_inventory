@@ -133,7 +133,7 @@ export const RenderPage = styled.div`
     }
     @media(min-width: 1000px){
         width: 70%;
-        height: 130vh;
+        height: 200vh;
         margin-right: 0px;
         padding: 16px;
     }

@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { IDefaultProviderProps, IProduct, IProductsContext, ISerchData } from "./TypesProduct";
+import { IDefaultProviderProps, IProduct, IProductsContext, ISalesMoreProducts, ISerchData } from "./TypesProduct";
 import { api } from "../services/api";
 import { toast } from "react-toastify";
 
@@ -14,7 +14,8 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
     const [selectedProduct, setSelectProduct] = useState({} as IProduct);
     const [openCreateProductModal, setOpenCreateProductModal] = useState(false);
     const [openRemoveProductModal, setOpenRemoveProductModal] = useState(false);
-    const [totalActive, setTotalActive] = useState(0)
+    const [totalActive, setTotalActive] = useState(0);
+    const [sales,setSales] = useState([] as ISalesMoreProducts[]);
 
     const getAllProducts = async () => {
         try {
@@ -27,6 +28,7 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
             });
             
             setProducts(response.data);
+            console.log(products);
             
         } catch (error) {
             console.log(error);
@@ -74,7 +76,25 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
         setProducts(newArray);
         
     }
-    const subtractProduct = (product: IProduct) => {
+    const subtractProduct = async (product: IProduct) => {
+        const token = localStorage.getItem('@TOKEN');
+
+        products.map(element=>{
+            if(element.id === product.id){
+                const newSales = element.sales + 1;
+                element.sales = newSales;
+
+                const data = {
+                    sales:newSales
+                }
+                    const response = api.patch(`products/${product.id}`,data,{headers:{
+                        Authorization: `Bearer ${token}`
+                    }})
+                    console.log(response);
+                    console.log("aqui");
+            }
+        })
+
         const productIndex = products.findIndex((currentProduct) => currentProduct.id === product.id);
         const newProduct: IProduct = {...product};
         const quantity = String(Number(newProduct.qtd) - 1);
@@ -165,7 +185,7 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
 
 
     return (
-        <ProductsContext.Provider value={{products, filteredProducts, searchProduct, search, cleanSearch, addProduct, subtractProduct, openEditProductModal, setOpenEditProductModal, selectedProduct, openEditProductModalFunction, editProduct, openCreateProductModal, setOpenCreateProductModal, openRemoveProductModal, setOpenRemoveProductModal, openRemoveProductModalFunction, createProduct, deleteProduct, totalActive }}>
+        <ProductsContext.Provider value={{products, filteredProducts, searchProduct, search, cleanSearch, addProduct, subtractProduct, openEditProductModal, setOpenEditProductModal, selectedProduct, openEditProductModalFunction, editProduct, openCreateProductModal, setOpenCreateProductModal, openRemoveProductModal, setOpenRemoveProductModal, openRemoveProductModalFunction, createProduct, deleteProduct, totalActive,sales }}>
             {children}
         </ProductsContext.Provider>
     )

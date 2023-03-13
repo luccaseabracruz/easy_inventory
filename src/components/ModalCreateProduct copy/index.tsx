@@ -45,6 +45,8 @@ export const ModalCreateProduct = () => {
                 <InputProduct label='Quantidade' placeholder='Digite a quantidade' inputKey='qtd'  register={register}/>
                 <small>{errors.qtd?.message}</small>
 
+                <InputProduct label='Vendidos' placeholder='Digite a quantidade vendidas' inputKey='sales' vendidos={0}  register={register}/>
+
                 <button className='submitBtn' type='submit'>Salvar Dados</button>
 
 

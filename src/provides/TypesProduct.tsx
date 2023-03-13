@@ -11,6 +11,7 @@ export interface IProduct{
     category: string;
     qtd: string;
     id: number;
+    sales:number;
 }
 export interface IStatic{
     name:string;
@@ -19,6 +20,11 @@ export interface IStatic{
 export interface IStaticProductsExpencie{
     name:string;
     preço:string;
+}
+export interface ISalesMoreProducts{
+    name:string;
+    sales:number;
+    id:number;
 }
 
 export interface IProductsContext{
@@ -42,6 +48,7 @@ export interface IProductsContext{
     createProduct: (data: IProduct) => Promise<void>;
     deleteProduct: (product: IProduct) => Promise<void>;
     totalActive: number;
+    sales:ISalesMoreProducts[];
 }
 
 export interface ISerchData{
