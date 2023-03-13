@@ -1,7 +1,8 @@
 import { createContext, useEffect, useState } from "react";
-import { IDefaultProviderProps, IProduct, IProductsContext, ISalesMoreProducts, ISerchData } from "./TypesProduct";
+import { IDefaultProviderProps, IProduct, IProductsContext, ISalesMoreProducts } from "./TypesProduct";
 import { api } from "../services/api";
 import { toast } from "react-toastify";
+import { ISerchData } from "../components/InputSearch/types";
 
 export const ProductsContext = createContext<IProductsContext>({} as IProductsContext);
 
@@ -13,6 +14,7 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
     const [openEditProductModal, setOpenEditProductModal] = useState(false);
     const [selectedProduct, setSelectProduct] = useState({} as IProduct);
     const [openCreateProductModal, setOpenCreateProductModal] = useState(false);
+    const [openProductModal, setOpenProductModal] = useState(false);
     const [openRemoveProductModal, setOpenRemoveProductModal] = useState(false);
     const [totalActive, setTotalActive] = useState(0);
     const [sales,setSales] = useState([] as ISalesMoreProducts[]);
@@ -109,20 +111,24 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
         
     }
 
-    const openEditProductModalFunction = (product: IProduct) => {
-        setOpenEditProductModal(true);
-        console.log(product);
+    const openProductModalFunction = (product: IProduct) => {
         setSelectProduct(product);
-    }
-    const openRemoveProductModalFunction = (product: IProduct) => {
-        setOpenRemoveProductModal(true);
-        setSelectProduct(product);
+        setOpenProductModal(true)
     }
 
-    const editProduct = async (product: IProduct, data: IProduct) => {
+    const openEditProductModalFunction = () => {
+        setOpenProductModal(false);
+        setOpenEditProductModal(true);
+    }
+    const openRemoveProductModalFunction = () => {
+        setOpenProductModal(false);
+        setOpenRemoveProductModal(true);
+    }
+
+    const editProduct = async ( data: IProduct) => {
         try {
             const token = localStorage.getItem('@TOKEN')
-            const response = await api.patch(`products/${product.id}`, data, {
+            const response = await api.patch(`products/${selectedProduct.id}`, data, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -151,10 +157,10 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
         }
     }
 
-    const deleteProduct = async (product: IProduct) => {
+    const deleteProduct = async () => {
         try {
             const token = localStorage.getItem('@TOKEN')
-            const response = await api.delete(`products/${product.id}`, {
+            const response = await api.delete(`products/${selectedProduct.id}`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }
@@ -166,6 +172,7 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
             console.log(error)
         }
     }
+
 
     const calculateTotalActive = () => {
         const total = products.reduce((previousValue, currentValue) =>
@@ -187,7 +194,32 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
 
 
     return (
-        <ProductsContext.Provider value={{products, filteredProducts, searchProduct, search, cleanSearch, addProduct, subtractProduct, openEditProductModal, setOpenEditProductModal, selectedProduct, openEditProductModalFunction, editProduct, openCreateProductModal, setOpenCreateProductModal, openRemoveProductModal, setOpenRemoveProductModal, openRemoveProductModalFunction, createProduct, deleteProduct, totalActive,sales }}>
+        <ProductsContext.Provider value={{
+            products,
+            filteredProducts,
+            searchProduct,
+            search,
+            cleanSearch,
+            addProduct,
+            subtractProduct,
+            openEditProductModal,
+            setOpenEditProductModal,
+            selectedProduct,
+            openEditProductModalFunction,
+            editProduct,
+            openCreateProductModal,
+            setOpenCreateProductModal,
+            openRemoveProductModal,
+            setOpenRemoveProductModal,
+            openRemoveProductModalFunction,
+            createProduct,
+            deleteProduct,
+            totalActive,
+            openProductModal,
+            setOpenProductModal,
+            openProductModalFunction,
+            sales
+            }}>
             {children}
         </ProductsContext.Provider>
     )

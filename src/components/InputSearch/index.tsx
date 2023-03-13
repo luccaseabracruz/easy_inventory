@@ -3,9 +3,9 @@ import { StyledInputSearch } from "./style"
 import { BiSearch } from 'react-icons/bi'
 import { useContext } from "react";
 import { ProductsContext } from "../../provides/ProductsContext";
-import { ISerchData } from "../../provides/TypesProduct";
 import * as yup from 'yup';
 import { yupResolver } from "@hookform/resolvers/yup";
+import { ISerchData } from "./types";
  
 
 
