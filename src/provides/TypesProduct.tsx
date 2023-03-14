@@ -12,6 +12,7 @@ export interface IProduct{
     category: string;
     qtd: string;
     id: number;
+    description?:string
 }
 export interface IStatic{
     name:string;

@@ -39,7 +39,7 @@ export const ModalProduct = () => {
                 </div>
 
                 <div className='description'>
-                    <p>Descrição do produto podendo conter onde foi comprado, do que é feito, ano de fabricação e qualquer outra informação que o dono da empresa acredite ser relevante</p>
+                    <p>{selectedProduct.description ? selectedProduct.description : null}</p>
                 </div>
                 
 
