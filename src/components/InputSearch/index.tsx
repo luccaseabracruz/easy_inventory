@@ -27,7 +27,7 @@ export const InputSearch = ({placeholder} : IInputSearchProps) => {
 
     const submitFunction = (data: ISerchData) => {
         searchProduct(data);
-        console.log(errors)
+        
     }
 
     return (

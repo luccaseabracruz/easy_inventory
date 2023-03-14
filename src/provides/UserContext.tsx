@@ -72,15 +72,15 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
 
       if (datas.name.length !== 0) {
         array.push('name',{name:datas.name});
-        console.log("nome")
+        
       }
       if (datas.email.length !== 0) {
         array.push('email',{email:datas.email});
-        console.log("email")
+        
       }
       if (datas.avatar?.length !== 0) {
         array.push('avatar',{avatar:datas.avatar});
-        console.log("avatar")
+        
       }
 
       if(array.length == 0){
@@ -97,7 +97,7 @@ export const UserProvider = ({ children }: IDefaultProviderProps) => {
         const response = await api.patch(`/users/${id}`,data,{headers:{
           Authorization: `Bearer ${token}`
         }})
-        console.log(response);
+        
         //feedback
         toast.success('Usuario editado com sucesso');
         setUser(response.data);
