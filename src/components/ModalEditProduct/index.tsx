@@ -14,6 +14,7 @@ const schema = yup.object({
     price: yup.string(),
     category: yup.string(),
     qtd: yup.string(),
+    description: yup.string()
 })
 
 export const ModalEditProduct = () => {
@@ -44,6 +45,8 @@ export const ModalEditProduct = () => {
                 <small>{errors.category?.message}</small>
                 <InputProduct label='Quantidade' placeholder='Digite a quantidade'  defaultValue= {selectedProduct.qtd} inputKey='qtd'  register={register}/>
                 <small>{errors.qtd?.message}</small>
+                <InputProduct label='Descrição' placeholder='Digite a descrição'  defaultValue= {selectedProduct.description} inputKey='description'  register={register}/>
+                <small>{errors.description?.message}</small>
 
                 <button type='submit'>Salvar Dados</button>
 

@@ -31,15 +31,15 @@ export const ModalProduct = () => {
                         <h2>{selectedProduct.name}</h2>
                         <p>{selectedProduct.category}</p>
                         <div className="buttonsContainer">
-                            <button onClick={()=> openRemoveProductModalFunction()}> <FaTrash /> Excluir</button>
-                            <button onClick={()=> openEditProductModalFunction()}> <AiTwotoneEdit /> Editar</button>
+                            <button onClick={()=> openRemoveProductModalFunction()}> <FaTrash />Excluir</button>
+                            <button onClick={()=> openEditProductModalFunction()}> <AiTwotoneEdit />Editar</button>
                         </div>
                         <p>R${selectedProduct.price}</p>
                     </div>
                 </div>
 
                 <div className='description'>
-                    <p>Descrição do produto podendo conter onde foi comprado, do que é feito, ano de fabricação e qualquer outra informação que o dono da empresa acredite ser relevante</p>
+                    <p>{selectedProduct.description ? selectedProduct.description : null}</p>
                 </div>
                 
 

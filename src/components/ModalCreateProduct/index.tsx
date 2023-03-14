@@ -14,6 +14,7 @@ const schema = yup.object({
     price: yup.string().required('Preço obrigatório'),
     category: yup.string().required('Categoria obrigatória'),
     qtd: yup.string().required('Quantidade obrigatória'),
+    description: yup.string().required('Descrição obrigatória'),
 })
 
 export const ModalCreateProduct = () => {
@@ -44,6 +45,8 @@ export const ModalCreateProduct = () => {
                 <small>{errors.category?.message}</small>
                 <InputProduct label='Quantidade' placeholder='Digite a quantidade' inputKey='qtd'  register={register}/>
                 <small>{errors.qtd?.message}</small>
+                <InputProduct label='Descrição' placeholder='Digite uma descrição' inputKey='description'  register={register}/>
+                <small>{errors.description?.message}</small>
 
                 <InputProduct label='Vendidos' placeholder='Digite a quantidade vendidas' inputKey='sales' vendidos={0}  register={register}/>
 

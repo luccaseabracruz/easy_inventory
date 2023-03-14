@@ -6,7 +6,9 @@ import { StyledInputContainer } from "./style"
 interface IInputProductProps{
     label: string;
     placeholder: string;
-    inputKey: 'image' | 'name' | 'id' | 'price' | 'category' | 'qtd' | 'sales';
+
+    inputKey: 'image' | 'name' | 'id' | 'price' | 'category' | 'qtd' | 'description' | 'sales';
+
     defaultValue?: string;
     register: UseFormRegister<IProduct>;
     // Inputerror?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> |  undefined;
