@@ -6,19 +6,20 @@ import { StyledInputContainer } from "./style"
 interface IInputProductProps{
     label: string;
     placeholder: string;
-    inputKey: 'image' | 'name' | 'id' | 'price' | 'category' | 'qtd';
+    inputKey: 'image' | 'name' | 'id' | 'price' | 'category' | 'qtd' | 'sales';
     defaultValue?: string;
     register: UseFormRegister<IProduct>;
     // Inputerror?: string | FieldError | Merge<FieldError, FieldErrorsImpl<any>> |  undefined;
+    vendidos?:number;
 }
 
-export const InputProduct = ({ label, placeholder, inputKey, defaultValue, register}: IInputProductProps) => {
+export const InputProduct = ({ label, placeholder, inputKey, defaultValue,vendidos, register}: IInputProductProps) => {
 
 
     return (
         <StyledInputContainer>
             <label htmlFor={inputKey}>{label}</label>
-            <input type="text" id={inputKey} placeholder={placeholder} defaultValue={defaultValue} {...register(inputKey)}/>
+            <input type="text" id={inputKey} placeholder={placeholder} value={vendidos} defaultValue={defaultValue} {...register(inputKey)}/>
         </StyledInputContainer>
     )
 }
