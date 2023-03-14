@@ -12,11 +12,9 @@ export const StaticPage = () => {
     const [productExpencie, setExpencie] = useState([] as IStaticProductsExpencie[]);
     const [sales2,setSales2] = useState([] as ISalesMoreProducts[]);
     
-    console.log(sales);
-    console.log(products);
 
     useEffect(() => {
-        console.log(products)
+        
 
         const category: IStatic[] = [];
         const price: IStaticProductsExpencie[] = [];
@@ -37,7 +35,7 @@ export const StaticPage = () => {
                     Authorization: `Bearer ${token}`
                 }})
                 const array = [...response.data];
-                console.log(array);
+        
                 array.map(element=>{
 
                     const values = element.sales;

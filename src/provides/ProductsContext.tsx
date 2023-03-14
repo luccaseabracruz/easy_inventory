@@ -30,7 +30,7 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
             });
             
             setProducts(response.data);
-            console.log(products);
+            
             
         } catch (error) {
             console.log(error);
@@ -87,8 +87,7 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
 
                 let newSales = value + 1;
                 element.sales = newSales as number;
-                console.log(element.sales);
-                console.log(newSales);
+                
 
                 const data = {
                     sales:newSales
@@ -96,8 +95,7 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
                     const response =  api.patch(`products/${product.id}`,data,{headers:{
                         Authorization: `Bearer ${token}`
                     }})
-                    console.log(response);
-                    console.log("aqui");
+                    
             }
         })
 
