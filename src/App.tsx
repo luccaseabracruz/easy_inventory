@@ -1,16 +1,27 @@
-import { useState } from 'react';
-
-
-
+import { ToastContainer } from "react-toastify";
+import { UserProvider } from "./provides/UserContext";
+import { Router } from "./routes";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
-  const [count, setCount] = useState(0);
 
   return (
-    <>
-      <button className='buttonRed'>Cancelar</button>
-    </>
-  )
+    <UserProvider>
+      <ToastContainer
+        position="top-right"
+        autoClose={1000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="light"
+      />
+      <Router />
+    </UserProvider>
+  );
 }
 
-export default App
+export default App;
