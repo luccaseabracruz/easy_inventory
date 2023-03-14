@@ -31,8 +31,8 @@ export const ModalProduct = () => {
                         <h2>{selectedProduct.name}</h2>
                         <p>{selectedProduct.category}</p>
                         <div className="buttonsContainer">
-                            <button onClick={()=> openRemoveProductModalFunction()}> <FaTrash /> Excluir</button>
-                            <button onClick={()=> openEditProductModalFunction()}> <AiTwotoneEdit /> Editar</button>
+                            <button onClick={()=> openRemoveProductModalFunction()}> <FaTrash />Excluir</button>
+                            <button onClick={()=> openEditProductModalFunction()}> <AiTwotoneEdit />Editar</button>
                         </div>
                         <p>R${selectedProduct.price}</p>
                     </div>
