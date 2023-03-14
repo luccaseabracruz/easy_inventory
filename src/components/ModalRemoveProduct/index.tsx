@@ -19,7 +19,7 @@ export const ModalRemoveProduct = () => {
 
                 <div className="buttonsContainer">
                     <button className='cancelBtn' onClick={() => setOpenRemoveProductModal(false)}>Cancelar</button>
-                    <button className='removeBtn' onClick={() => deleteProduct(selectedProduct)}>Excluir</button>
+                    <button className='removeBtn' onClick={() => deleteProduct()}>Excluir</button>
                 </div>
             </div>
         </StyledModalContainer>
