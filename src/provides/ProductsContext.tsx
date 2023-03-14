@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { IDefaultProviderProps, IProduct, IProductsContext } from "./TypesProduct";
+import { IDefaultProviderProps, IProduct, IProductsContext, ISalesMoreProducts,  } from "./TypesProduct";
 import { api } from "../services/api";
 import { toast } from "react-toastify";
 import { ISerchData } from "../components/InputSearch/types";
@@ -17,6 +17,7 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
     const [openProductModal, setOpenProductModal] = useState(false);
     const [openRemoveProductModal, setOpenRemoveProductModal] = useState(false);
     const [totalActive, setTotalActive] = useState(0);
+    const [sales,setSales] = useState([] as ISalesMoreProducts[]);
 
     const getAllProducts = async () => {
         try {
@@ -29,6 +30,7 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
             });
             
             setProducts(response.data);
+            console.log(products);
             
         } catch (error) {
             console.log(error);
@@ -76,7 +78,29 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
         setProducts(newArray);
         
     }
-    const subtractProduct = (product: IProduct) => {
+    const subtractProduct = async (product: IProduct) => {
+        const token = localStorage.getItem('@TOKEN');
+
+        products.map(element=>{
+            if(element.id === product.id){
+                const value = element.sales;
+
+                let newSales = value + 1;
+                element.sales = newSales as number;
+                console.log(element.sales);
+                console.log(newSales);
+
+                const data = {
+                    sales:newSales
+                }
+                    const response =  api.patch(`products/${product.id}`,data,{headers:{
+                        Authorization: `Bearer ${token}`
+                    }})
+                    console.log(response);
+                    console.log("aqui");
+            }
+        })
+
         const productIndex = products.findIndex((currentProduct) => currentProduct.id === product.id);
         const newProduct: IProduct = {...product};
         const quantity = String(Number(newProduct.qtd) - 1);
@@ -196,7 +220,8 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
             totalActive,
             openProductModal,
             setOpenProductModal,
-            openProductModalFunction
+            openProductModalFunction,
+            sales
             }}>
             {children}
         </ProductsContext.Provider>

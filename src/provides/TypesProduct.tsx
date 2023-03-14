@@ -12,7 +12,9 @@ export interface IProduct{
     category: string;
     qtd: string;
     id: number;
-    description?:string
+    description?:string;
+    sales:number;
+
 }
 export interface IStatic{
     name:string;
@@ -21,6 +23,11 @@ export interface IStatic{
 export interface IStaticProductsExpencie{
     name:string;
     preço:string;
+}
+export interface ISalesMoreProducts{
+    name:string;
+    sales:number;
+    id:number;
 }
 
 export interface IProductsContext{
@@ -44,12 +51,15 @@ export interface IProductsContext{
     createProduct: (data: IProduct) => Promise<void>;
     deleteProduct: () => Promise<void>;
     totalActive: number;
+    sales:ISalesMoreProducts[];
     openProductModal: boolean;
     setOpenProductModal: React.Dispatch<React.SetStateAction<boolean>>;
     openProductModalFunction: (product: IProduct) => void;
-
 }
+
+
 
 export interface IModalEditProductProps{
     product: IProduct;
 }
+
