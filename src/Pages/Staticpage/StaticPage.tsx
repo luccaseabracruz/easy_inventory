@@ -37,9 +37,15 @@ export const StaticPage = () => {
                     Authorization: `Bearer ${token}`
                 }})
                 const array = [...response.data];
+                console.log(array);
                 array.map(element=>{
-                    const test = parseInt(element.sales + 1);
-                    moreSales.push({name:element.name,id:element.id,sales:test});
+
+                    const values = element.sales;
+                    if(values.length === 1){
+                        moreSales.push({name:element.name,id:element.id,sales:0});
+                    }else{
+                        moreSales.push({name:element.name,id:element.id,sales:values.length-1});
+                    }
                     
                 })
                 setSales2(moreSales);

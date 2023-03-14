@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from "react";
-import { IDefaultProviderProps, IProduct, IProductsContext, ISalesMoreProducts } from "./TypesProduct";
+import { IDefaultProviderProps, IProduct, IProductsContext, ISalesMoreProducts,  } from "./TypesProduct";
 import { api } from "../services/api";
 import { toast } from "react-toastify";
 import { ISerchData } from "../components/InputSearch/types";
@@ -83,14 +83,17 @@ export const ProductsProvider = ({children}: IDefaultProviderProps) => {
 
         products.map(element=>{
             if(element.id === product.id){
-                
-                const newSales = element.sales + 1;
-                element.sales = newSales;
+                const value = element.sales;
+
+                let newSales = value + 1;
+                element.sales = newSales as number;
+                console.log(element.sales);
+                console.log(newSales);
 
                 const data = {
                     sales:newSales
                 }
-                    const response = api.patch(`products/${product.id}`,data,{headers:{
+                    const response =  api.patch(`products/${product.id}`,data,{headers:{
                         Authorization: `Bearer ${token}`
                     }})
                     console.log(response);

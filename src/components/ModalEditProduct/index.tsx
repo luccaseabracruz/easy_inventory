@@ -25,7 +25,7 @@ export const ModalEditProduct = () => {
     })
 
     const submitFunction = (data: IProduct) => {
-        editProduct(selectedProduct, data);
+        editProduct(data);
     }
 
 
