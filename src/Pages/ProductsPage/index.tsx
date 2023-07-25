@@ -11,6 +11,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import { ModalCreateProduct } from "../../components/ModalCreateProduct";
 import { ModalProduct } from "../../components/ModalProduct";
 
+
 export const ProductsPage = () => {
 
     const {
